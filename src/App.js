@@ -19,7 +19,7 @@ import Contact from './components/ContactUs/ContactUs';
 function App() {
   return (
     <div className="App">
-      <Router basename='/'>
+      <Router basename='/biodata.ditvi'>
         <ScrollToTop />
         <Navbar />
         <Routes>
