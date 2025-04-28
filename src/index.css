@@ -1,0 +1,23 @@
+:root {
+  --primary-color: #FF870F;
+  --secondary-color: #E20A37;
+  --text-dark: #333333;
+  --text-light: #666666;
+  --heading-font: 'Rozha One', serif;
+  --subtitle-font: 'Amita', cursive;
+  --body-font: 'Poppins', sans-serif;
+  --decorative-font: 'Yatra One', cursive;
+  --accent-font: 'Arya', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+  font-family: var(--body-font);
+}
+
+
+
+/* Add these circles to your App.jsx component */

@@ -1,0 +1,178 @@
+.whyus {
+    position: relative;
+    padding: 6rem 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fff5f2 0%, #fff 100%);
+}
+
+.whyus-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.animated-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.05;
+    filter: blur(40px);
+}
+
+.circle-1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    left: -100px;
+    animation: float 8s ease-in-out infinite;
+}
+
+.circle-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    right: -50px;
+    animation: float 8s ease-in-out infinite -2s;
+}
+
+.whyus-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.whyus-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.whyus-subtitle {
+    font-family: var(--subtitle-font);
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.3s forwards;
+}
+
+.whyus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.whyus-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.6s ease forwards;
+    animation-delay: var(--animation-delay);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.whyus-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.card-icon span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.whyus-card:hover .card-icon span {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.whyus-card h3 {
+    font-family: var(--decorative-font);
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.whyus-card p {
+    font-family: var(--body-font);
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--hover-bg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.whyus-card:hover .card-overlay {
+    opacity: 1;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@media (max-width: 992px) {
+    .whyus {
+        padding: 4rem 0;
+    }
+    
+    .whyus-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .whyus-subtitle {
+        font-size: 1rem;
+    }
+    
+    .whyus-card {
+        padding: 1.5rem;
+    }
+    
+    .animated-circle {
+        display: none;
+    }
+}

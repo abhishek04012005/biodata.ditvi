@@ -1,0 +1,551 @@
+/* Root Variables */
+:root {
+    --card-width: clamp(220px, 25vw, 280px);
+    --card-radius: 20px;
+    --card-padding: clamp(0.8rem, 2vw, 1.5rem);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: 0 20px 40px rgba(255, 135, 15, 0.2);
+    --transition-fast: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* Section Layout */
+.biodata-section {
+    position: relative;
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #fff5f2 0%, #fff 100%);
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Animations */
+@keyframes biodataShine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+@keyframes biodataFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes biodataScale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes biodataFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes biodataSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Background Elements */
+.biodata-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.biodata-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.05;
+    filter: blur(40px);
+    pointer-events: none;
+}
+
+.biodata-circle-1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    left: -100px;
+    animation: biodataFloat 8s ease-in-out infinite;
+}
+
+.biodata-circle-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    right: -50px;
+    animation: biodataFloat 8s ease-in-out infinite -4s;
+}
+
+/* Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.header-design {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.design-element {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+.section-subtitle {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: biodataFadeIn 0.6s ease-out 0.3s forwards;
+}
+
+/* Card Container */
+.cards-slider {
+    padding: 1rem;
+    margin: 0 -0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.slider-item {
+    padding: 0.5rem;
+}
+
+/* Card Component */
+.biodata-card {
+    position: relative;
+    width: var(--card-width);
+    margin: 0 auto;
+    cursor: pointer;
+    perspective: 1000px;
+    opacity: 0;
+    animation: biodataSlideUp 0.6s ease-out forwards;
+}
+
+.biodata-card-inner {
+    background: white;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: all var(--transition-slow);
+    transform-style: preserve-3d;
+    border: 2px solid transparent;
+}
+
+.biodata-card-hovered .biodata-card-inner {
+    transform: translateY(-10px);
+    box-shadow: var(--card-hover-shadow);
+    border-color: rgba(255, 135, 15, 0.1);
+}
+
+/* Card Media */
+.biodata-card-media {
+    position: relative;
+    aspect-ratio: 3/4;
+    background: #f8f8f8;
+    overflow: hidden;
+}
+
+.biodata-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 5%;
+    padding: 1rem 0;
+    transition: transform var(--transition-slow);
+}
+
+.biodata-card-hovered .biodata-card-media img {
+    transform: scale(1.05);
+}
+
+/* Premium Tag */
+.biodata-card-premium {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all var(--transition-fast);
+    z-index: 2;
+}
+
+.biodata-card-hovered .biodata-card-premium {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Discount Badge */
+.biodata-card-discount {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-fast);
+    z-index: 2;
+}
+
+.biodata-discount-value {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.biodata-discount-label {
+    color: var(--text-light);
+    font-size: 0.7rem;
+    margin-top: 2px;
+}
+
+/* Card Content */
+.biodata-card-content {
+    padding: var(--card-padding);
+}
+
+.biodata-content-title {
+    color: var(--text-dark);
+    font-size: 1rem;
+    transition: color var(--transition-fast);
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Card Overlay */
+.biodata-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.biodata-overlay-content {
+    text-align: center;
+    color: white;
+    padding: 1rem;
+    transform: translateY(10px);
+    transition: transform var(--transition-fast);
+}
+
+.biodata-card:hover .biodata-card-overlay {
+    opacity: 1;
+}
+
+.biodata-card:hover .biodata-overlay-content {
+    transform: translateY(0);
+}
+
+.biodata-model-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.biodata-model-name {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.biodata-rating {
+    display: flex;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.biodata-star {
+    color: #FFD700;
+    font-size: 1.2rem;
+}
+
+/* Price Section */
+.biodata-price-section {
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.biodata-price-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.biodata-price-original {
+    text-decoration: line-through;
+}
+
+.biodata-price-final {
+    color: var(--secondary-color);
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+/* Buttons */
+.biodata-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.biodata-btn-primary,
+.biodata-btn-secondary {
+    flex: 1;
+    padding: 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.biodata-btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.biodata-btn-secondary {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.biodata-btn-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-20deg);
+    animation: biodataShine 3s infinite;
+}
+
+/* Slider Navigation */
+.slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary-color) !important;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-fast);
+}
+
+.slick-prev {
+    left: -22px;
+}
+
+.slick-next {
+    right: -22px;
+}
+
+.slick-arrow:hover {
+    background: var(--primary-color) !important;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slick-arrow:before {
+    display: none;
+}
+
+.custom-arrow {
+    color: var(--primary-color);
+    font-size: 24px;
+    transition: color var(--transition-fast);
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .biodata-card {
+        width: 260px;
+    }
+
+    .slick-arrow {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 992px) {
+    .biodata-card {
+        width: 240px;
+    }
+
+    .biodata-model-name {
+        font-size: 1.3rem;
+    }
+
+    .slick-arrow {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .biodata-section {
+        padding: 4rem 0;
+    }
+
+    .biodata-buttons {
+        flex-direction: column;
+    }
+
+    .biodata-circle {
+        display: none;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .slick-arrow {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (max-width: 576px) {
+    .biodata-card {
+        width: 220px;
+    }
+
+    .biodata-card-premium,
+    .biodata-card-discount {
+        transform: scale(0.9);
+    }
+
+    .biodata-content-title {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Add these styles after your existing card styles */
+.biodata-more {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.biodata-more-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 135, 15, 0.2);
+}
+
+.biodata-more-btn svg {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.biodata-more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 135, 15, 0.3);
+}
+
+.biodata-more-btn:hover svg {
+    transform: translateX(3px);
+}
+
+/* Add these media queries to your existing responsive styles */
+@media (max-width: 768px) {
+    .biodata-more {
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    
+    .biodata-more-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}

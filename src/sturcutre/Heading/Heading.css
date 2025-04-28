@@ -1,0 +1,28 @@
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 5rem;
+}
+
+.heading-text {
+    text-transform: uppercase;
+}
+
+.heading-text p {
+    color: var(--primary-color);
+   font-weight: 900;
+   font-size: 2.5rem;
+   margin: 0;
+   padding: 0;
+}
+
+
+@media (max-width: 1200px) { 
+ 
+    .heading-text p {
+        font-size: 1.8rem;
+    }
+}
+
