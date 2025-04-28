@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/biodata.ditvi/static/css/main.70b2fd7f.css",
+    "main.js": "/biodata.ditvi/static/js/main.2c6e3319.js",
+    "static/js/453.e5fbf87c.chunk.js": "/biodata.ditvi/static/js/453.e5fbf87c.chunk.js",
+    "static/media/waveorange.svg": "/biodata.ditvi/static/media/waveorange.09e5a0cb2c7ad45565b0.svg",
+    "static/media/wavered.svg": "/biodata.ditvi/static/media/wavered.0e43c3f709493b835c56.svg",
+    "static/media/heroright.svg": "/biodata.ditvi/static/media/heroright.a6858f93b85a9e9e98c550bd5fbb556c.svg",
+    "static/media/biodata-1111.png": "/biodata.ditvi/static/media/biodata-1111.470750626389e362864f.png",
+    "static/media/client5.png": "/biodata.ditvi/static/media/client5.6fd4efdacd35756ca31d.png",
+    "static/media/client6.png": "/biodata.ditvi/static/media/client6.e2d8fa6c5d8f4a6f462f.png",
+    "static/media/client3.png": "/biodata.ditvi/static/media/client3.9626dcd5a85f2cf4cebe.png",
+    "static/media/client1.png": "/biodata.ditvi/static/media/client1.3c74b0c15e84af8ad94c.png",
+    "static/media/logo.png": "/biodata.ditvi/static/media/logo.7b751f1b2b89e30fc171.png",
+    "static/media/contactus.svg": "/biodata.ditvi/static/media/contactus.5cbd411319a7bbde9c76ab806923a1b7.svg",
+    "static/media/client4.png": "/biodata.ditvi/static/media/client4.7bafaff1494a70f0ead1.png",
+    "static/media/client2.png": "/biodata.ditvi/static/media/client2.a272bea2345108799168.png",
+    "static/media/slick.svg": "/biodata.ditvi/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/biodata.ditvi/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/biodata.ditvi/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/biodata.ditvi/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/biodata.ditvi/index.html",
+    "main.70b2fd7f.css.map": "/biodata.ditvi/static/css/main.70b2fd7f.css.map",
+    "main.2c6e3319.js.map": "/biodata.ditvi/static/js/main.2c6e3319.js.map",
+    "453.e5fbf87c.chunk.js.map": "/biodata.ditvi/static/js/453.e5fbf87c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.70b2fd7f.css",
+    "static/js/main.2c6e3319.js"
+  ]
+}
