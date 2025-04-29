@@ -1,4 +1,13 @@
-
+import BlogImage1 from '../assets/blog/blog1.png'
+import BlogImage2 from '../assets/blog/blog2.png'
+import BlogImage3 from '../assets/blog/blog3.png'
+import BlogImage4 from '../assets/blog/blog4.png'
+import BlogImage5 from '../assets/blog/blog5.png'
+import BlogImage6 from '../assets/blog/blog6.png'
+import BlogImage7 from '../assets/blog/blog7.png'
+import BlogImage8 from '../assets/blog/blog8.png'
+import BlogImage9 from '../assets/blog/blog9.png'
+import BlogImage10 from '../assets/blog/blog10.png'
 
 const blogPosts = [
     {
@@ -33,17 +42,22 @@ const blogPosts = [
             <p>Creating a well-structured biodata can greatly improve your chances of making a strong impression. By following the right formatting techniques and highlighting relevant details, you can craft a biodata that stands out in both personal and professional spheres.</p>
         `,
         "excerpt": "Learn expert tips for crafting an effective traditional biodata to make the best impression.",
-        "image": "https://mindworks.org/app/uploads/2024/11/TKP-NALA-KTM-Statue-2.web_.jpg",
+        "image": BlogImage1,
         "author": "Abhishek",
-        "date": "April 27, 2025",
-        "category": "Personal Development",
+        "date": new Date(Date.now() - (5 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
+         "category": "Personal Development",
         "readTime": "6 min read",
-        "tags": ["Traditional Biodata", "Resume Tips", "Professional Profile"]
+        "tags": ["Traditional Biodata", "Resume Tips", "Professional Profile"],
+        "likes": 10,
     },
-    
-    
-    
-    
+
+
+
+
     {
         "id": 2,
         "title": "The Essential Elements of a Compelling Traditional Biodata",
@@ -75,15 +89,20 @@ const blogPosts = [
             <p>Crafting a compelling biodata helps you make a strong first impression. By focusing on structure, presentation, and meaningful details, you ensure that your biodata stands out and serves its intended purpose effectively.</p>
         `,
         "excerpt": "Learn the key components that make a traditional biodata compelling and impactful.",
-        "image": "https://mindworks.org/app/uploads/2024/11/TKP-NALA-KTM-Statue-2.web_.jpg",
+        "image": BlogImage2,
         "author": "Abhishek",
-        "date": "April 27, 2025",
+        "date": new Date(Date.now() - (8 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
         "category": "Professional Development",
         "readTime": "6 min read",
-        "tags": ["Traditional Biodata", "Resume Tips", "Professional Profile", "Matrimonial Biodata"]
+        "tags": ["Traditional Biodata", "Resume Tips", "Professional Profile", "Matrimonial Biodata"],
+        "likes": 15,
     },
-    
-    
+
+
     {
         "id": 3,
         "title": "Biodata Writing for Marriage: Highlighting Your Values and Traditions",
@@ -116,15 +135,20 @@ const blogPosts = [
             <p>A well-crafted marriage biodata helps in expressing who you are while making a lasting impression. By focusing on structure, values, and clarity, you can create a biodata that truly represents your traditions and aspirations.</p>
         `,
         "excerpt": "Learn the key elements of writing a compelling marriage biodata that reflects your values and traditions.",
-        "image": "https://mindworks.org/app/uploads/2024/11/TKP-NALA-KTM-Statue-2.web_.jpg",
+        "image": BlogImage3,
         "author": "Abhishek",
-        "date": "April 27, 2025",
+        "date": new Date(Date.now() - (10 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
         "category": "Marriage & Relationships",
         "readTime": "6 min read",
-        "tags": ["Marriage Biodata", "Traditional Biodata", "Finding a Match", "Personal Profile"]
+        "tags": ["Marriage Biodata", "Traditional Biodata", "Finding a Match", "Personal Profile"],
+        "likes": 20,
     },
-    
-    
+
+
     {
         "id": 4,
         "title": "Making a Lasting Impression: Traditional Biodata Do's and Don'ts",
@@ -156,14 +180,19 @@ const blogPosts = [
             <p>A well-crafted biodata helps in making a strong first impression. By following the do’s and avoiding the don’ts, you can create a structured and appealing biodata that truly represents you.</p>
         `,
         "excerpt": "Discover key do's and don'ts to craft a traditional biodata that makes a lasting impression.",
-        "image": "https://mindworks.org/app/uploads/2024/11/TKP-NALA-KTM-Statue-2.web_.jpg",
+        "image": BlogImage4,
         "author": "Abhishek",
-        "date": "April 27, 2025",
+        "date": new Date(Date.now() - (39 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
         "category": "Personal Development",
         "readTime": "6 min read",
-        "tags": ["Traditional Biodata", "Resume Tips", "Matrimonial Biodata", "Professional Profile"]
+        "tags": ["Traditional Biodata", "Resume Tips", "Matrimonial Biodata", "Professional Profile"],
+        "likes": 18,
     },
-    
+
     {
         "id": 5,
         "title": "Beyond the Basics: Elevating Your Traditional Biodata",
@@ -202,14 +231,19 @@ const blogPosts = [
             <p>Elevating your biodata requires thoughtfulness, structure, and presentation. By going beyond the basics, you can create a document that truly reflects your personality, aspirations, and strengths.</p>
         `,
         "excerpt": "Go beyond standard biodata formats and create a compelling profile that showcases your strengths effectively.",
-        "image": "https://mindworks.org/app/uploads/2024/11/TKP-NALA-KTM-Statue-2.web_.jpg",
+        "image": BlogImage5,
         "author": "Abhishek",
-        "date": "April 27, 2025",
+        "date": new Date(Date.now() - (11 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
         "category": "Personal Branding",
         "readTime": "6 min read",
-        "tags": ["Traditional Biodata", "Professional Profile", "Resume Writing", "Personal Branding"]
+        "tags": ["Traditional Biodata", "Professional Profile", "Resume Writing", "Personal Branding"],
+        "likes": 11,
     },
-    
+
     {
         "id": 6,
         "title": "Personalizing Your Traditional Biodata for Success",
@@ -248,14 +282,19 @@ const blogPosts = [
             <p>Personalizing your traditional biodata creates a lasting impression. By incorporating meaningful details and ensuring a polished presentation, you can successfully craft a biodata that resonates with your audience and elevates your prospects.</p>
         `,
         "excerpt": "Discover the key personalization strategies to make your traditional biodata stand out and leave a lasting impression.",
-        "image": "https://mindworks.org/app/uploads/2024/11/TKP-NALA-KTM-Statue-2.web_.jpg",
+        "image": BlogImage6,
         "author": "Abhishek",
-        "date": "April 27, 2025",
+        "date": new Date(Date.now() - (18 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
         "category": "Career & Personal Branding",
         "readTime": "6 min read",
-        "tags": ["Traditional Biodata", "Personal Branding", "Resume Writing", "Professional Development"]
+        "tags": ["Traditional Biodata", "Personal Branding", "Resume Writing", "Professional Development"],
+        "likes": 18,
     },
-    
+
     {
         "id": 7,
         "title": "Traditional Biodata Format: What You Need to Know",
@@ -295,15 +334,20 @@ const blogPosts = [
             <p>Following the traditional biodata format ensures clarity, professionalism, and effectiveness. By organizing details strategically and maintaining a polished presentation, you can create a biodata that successfully serves its purpose.</p>
         `,
         "excerpt": "Learn the essential elements of a traditional biodata format to present yourself effectively.",
-        "image": "https://mindworks.org/app/uploads/2024/11/TKP-NALA-KTM-Statue-2.web_.jpg",
+        "image": BlogImage7,
         "author": "Abhishek",
-        "date": "April 27, 2025",
+        "date": new Date(Date.now() - (85 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
         "category": "Professional & Personal Development",
         "readTime": "6 min read",
-        "tags": ["Traditional Biodata", "Professional Profile", "Resume Writing", "Personal Branding"]
+        "tags": ["Traditional Biodata", "Professional Profile", "Resume Writing", "Personal Branding"],
+        "likes": 12,
     },
-    
-    
+
+
     {
         "id": 8,
         "title": "Showcasing Your Family Background in a Traditional Biodata",
@@ -336,14 +380,19 @@ const blogPosts = [
             <p>A well-crafted family background section strengthens your biodata by presenting a comprehensive yet meaningful picture of your lineage. By keeping the format clear and informative, you can ensure that your biodata makes a lasting impression.</p>
         `,
         "excerpt": "Learn how to effectively showcase your family background in a traditional biodata with structured formatting and engaging details.",
-        "image": "https://mindworks.org/app/uploads/2024/11/TKP-NALA-KTM-Statue-2.web_.jpg",
+        "image": BlogImage8,
         "author": "Abhishek",
-        "date": "April 27, 2025",
+        "date": new Date(Date.now() - (100 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
         "category": "Traditional Biodata & Personal Development",
         "readTime": "6 min read",
-        "tags": ["Family Biodata", "Traditional Biodata", "Personal Profile", "Cultural Heritage"]
+        "tags": ["Family Biodata", "Traditional Biodata", "Personal Profile", "Cultural Heritage"],
+        "likes": 13,
     },
-    
+
     {
         "id": 9,
         "title": "Writing About Your Education and Career in a Traditional Biodata",
@@ -382,14 +431,19 @@ const blogPosts = [
             <p>A well-crafted education and career section in your biodata enhances your profile and increases credibility. By focusing on structured formatting and relevant details, you can create a biodata that truly reflects your professional journey.</p>
         `,
         "excerpt": "Learn how to effectively showcase your education and career in a traditional biodata with structured formatting and clarity.",
-        "image": "https://mindworks.org/app/uploads/2024/11/TKP-NALA-KTM-Statue-2.web_.jpg",
+        "image": BlogImage9,
         "author": "Abhishek",
-        "date": "April 27, 2025",
+        "date": new Date(Date.now() - (70 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
         "category": "Professional & Personal Development",
         "readTime": "6 min read",
-        "tags": ["Traditional Biodata", "Education Profile", "Career Development", "Resume Writing"]
+        "tags": ["Traditional Biodata", "Education Profile", "Career Development", "Resume Writing"],
+        "likes": 14,
     },
-    
+
     {
         "id": 10,
         "title": "Traditional Biodata for the Modern Age: Balancing Culture and Expectations",
@@ -429,14 +483,19 @@ const blogPosts = [
             <p>Incorporating modern elements into a traditional biodata enhances its effectiveness. By embracing culture while adapting to present-day expectations, you can create a biodata that resonates deeply across generations.</p>
         `,
         "excerpt": "Learn how to craft a traditional biodata that balances cultural heritage with modern expectations.",
-        "image": "https://mindworks.org/app/uploads/2024/11/TKP-NALA-KTM-Statue-2.web_.jpg",
+        "image": BlogImage10,
         "author": "Abhishek",
-        "date": "April 27, 2025",
+        "date": new Date(Date.now() - (99 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
         "category": "Personal & Professional Development",
         "readTime": "6 min read",
-        "tags": ["Traditional Biodata", "Modern Profiles", "Personal Branding", "Professional Development"]
+        "tags": ["Traditional Biodata", "Modern Profiles", "Personal Branding", "Professional Development"],
+        "likes": 15,
     },
-    
+
 ]
 
 

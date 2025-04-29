@@ -26,17 +26,18 @@ const BlogDetail = () => {
     const [post, setPost] = useState(null);
     const [relatedPosts, setRelatedPosts] = useState([]);
     const [isBookmarked, setIsBookmarked] = useState(false);
-    const [likeCount, setLikeCount] = useState(0);
     const [hasLiked, setHasLiked] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
 
     useEffect(() => {
-
         const currentPost = blogPosts.find(post => createSlug(post.title) === slug);
         if (currentPost) {
             setPost(currentPost);
-            setRelatedPosts(blogPosts.filter(p => p.id !== currentPost.id && p.category === currentPost.category).slice(0, 3));
+            setRelatedPosts(blogPosts.filter(p => 
+                p.id !== currentPost.id && 
+                p.category === currentPost.category
+            ).slice(0, 3));
         } else {
             navigate('/');
         }
@@ -68,8 +69,12 @@ const BlogDetail = () => {
     };
 
     const handleLike = () => {
-        if (!hasLiked) {
-            setLikeCount(prev => prev + 1);
+        if (!hasLiked && post) {
+            // Update post with new likes count
+            setPost({
+                ...post,
+                likes: post.likes + 1
+            });
             setHasLiked(true);
         }
     };
@@ -105,8 +110,8 @@ const BlogDetail = () => {
                                 className={`blogdetail-like ${hasLiked ? 'active' : ''}`}
                                 onClick={handleLike}
                             >
-                                <ThumbUpIcon />
-                                <span>{likeCount}</span>
+                                <ThumbUpIcon /> 
+                                <span>{post?.likes || 0}</span>
                             </button>
                             <button 
                                 className={`blogdetail-bookmark ${isBookmarked ? 'active' : ''}`}

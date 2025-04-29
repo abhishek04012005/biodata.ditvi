@@ -5,14 +5,15 @@ import './Footer.css';
 import Logo from '../../assets/logo.png';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import PinterestIcon from '@mui/icons-material/Pinterest';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';  
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const Footer = () => {
+
     const location = useLocation();
     const isHomePage = location.pathname === '/';
     return (
@@ -33,20 +34,20 @@ const Footer = () => {
                             Creating lasting impressions with our expertly crafted traditional biodata designs.
                         </p>
                         <div className="footer-social">
-                            <a href="https://whatsapp.com" className="footer-social-link whatsapp">
+                            <a href="https://wa.me/919263767441?text=Hello%20Ditvi%20Biodata%2C%0AI%20want%20to%20learn%20more%20about%20your%20services.%0A%0AThank%20You%20%3A)"                                                                                                       className="footer-social-link whatsapp">
                                 <WhatsAppIcon />
                             </a>
-                            <a href="https://instagram.com" className="footer-social-link instagram">
+                            <a href="https://www.instagram.com/ditvifoundation/" className="footer-social-link instagram">
                                 <InstagramIcon />
                             </a>
-                            <a href="https://facebook.com" className="footer-social-link facebook">
+                            <a href="https://www.facebook.com/ditvi.foundation" className="footer-social-link facebook">
                                 <FacebookIcon />
                             </a>
-                            <a href="https://twitter.com" className="footer-social-link twitter">
-                                <TwitterIcon />
+                            <a href="https://www.youtube.com/@ditvifoundation" className="footer-social-link youtube">
+                                <YouTubeIcon />
                             </a>
-                            <a href="https://linkedin.com" className="footer-social-link linkedin">
-                                <LinkedInIcon />
+                            <a href="https://in.pinterest.com/ditvifoundation/" className="footer-social-link pinterest">
+                                <PinterestIcon />
                             </a>
                         </div>
                     </div>
@@ -121,7 +122,7 @@ const Footer = () => {
                                             Blog
                                         </ScrollLink>
                                     ) : (
-                                        <Link to="/blog" className="footer-link">How We Work</Link>
+                                        <Link to="/blog" className="footer-link">Blog</Link>
                                     )}
                                 </li>
                             </ul>
@@ -144,7 +145,7 @@ const Footer = () => {
                                 </li>
                                 <li className="footer-contact-item">
                                     <EmailIcon className="footer-icon" />
-                                    <a href="mailto:contact@ditvibiodata.com" className="footer-link">care@ditvi.org</a>
+                                    <a href="mailto:care@ditvi.org" className="footer-link">care@ditvi.org</a>
                                 </li>
                                 <li className="footer-contact-item">
                                     <LocationOnIcon className="footer-icon" />

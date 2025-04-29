@@ -104,8 +104,8 @@
 .footer-social-link.whatsapp:hover { background: #25D366; }
 .footer-social-link.instagram:hover { background: #E4405F; }
 .footer-social-link.facebook:hover { background: #1877F2; }
-.footer-social-link.twitter:hover { background: #1DA1F2; }
-.footer-social-link.linkedin:hover { background: #0A66C2; }
+.footer-social-link.youtube:hover { background: red; }
+.footer-social-link.pinterest:hover { background: red; }
 
 .footer-links {
     display: grid;
