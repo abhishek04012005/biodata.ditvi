@@ -1,13 +1,23 @@
 {
   "files": {
-    "main.css": "/biodata.ditvi/static/css/main.70b2fd7f.css",
-    "main.js": "/biodata.ditvi/static/js/main.2e30020f.js",
+    "main.css": "/biodata.ditvi/static/css/main.f7349f02.css",
+    "main.js": "/biodata.ditvi/static/js/main.45532633.js",
     "static/js/453.e5fbf87c.chunk.js": "/biodata.ditvi/static/js/453.e5fbf87c.chunk.js",
     "static/media/waveorange.svg": "/biodata.ditvi/static/media/waveorange.09e5a0cb2c7ad45565b0.svg",
     "static/media/wavered.svg": "/biodata.ditvi/static/media/wavered.0e43c3f709493b835c56.svg",
     "static/media/heroright.svg": "/biodata.ditvi/static/media/heroright.a6858f93b85a9e9e98c550bd5fbb556c.svg",
     "static/media/biodata-1111.png": "/biodata.ditvi/static/media/biodata-1111.470750626389e362864f.png",
+    "static/media/blog1.png": "/biodata.ditvi/static/media/blog1.21e96365d6d612ef2493.png",
+    "static/media/blog10.png": "/biodata.ditvi/static/media/blog10.e03289c4ffd92376c120.png",
+    "static/media/blog2.png": "/biodata.ditvi/static/media/blog2.6010adb8a539287fdc8a.png",
+    "static/media/blog6.png": "/biodata.ditvi/static/media/blog6.42b5474f26fda9b7bfcd.png",
+    "static/media/blog5.png": "/biodata.ditvi/static/media/blog5.afb25e9147fd969c0512.png",
+    "static/media/blog4.png": "/biodata.ditvi/static/media/blog4.d7399bf6ec25ffab7416.png",
     "static/media/client5.png": "/biodata.ditvi/static/media/client5.6fd4efdacd35756ca31d.png",
+    "static/media/blog9.png": "/biodata.ditvi/static/media/blog9.ded9c433707be4ebe220.png",
+    "static/media/blog3.png": "/biodata.ditvi/static/media/blog3.acc205c016a704b1856d.png",
+    "static/media/blog8.png": "/biodata.ditvi/static/media/blog8.cb6eaff41d555cc56c6d.png",
+    "static/media/blog7.png": "/biodata.ditvi/static/media/blog7.336e21584acb6eee05f6.png",
     "static/media/client6.png": "/biodata.ditvi/static/media/client6.e2d8fa6c5d8f4a6f462f.png",
     "static/media/client3.png": "/biodata.ditvi/static/media/client3.9626dcd5a85f2cf4cebe.png",
     "static/media/client1.png": "/biodata.ditvi/static/media/client1.3c74b0c15e84af8ad94c.png",
@@ -18,14 +28,14 @@
     "static/media/slick.svg": "/biodata.ditvi/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/biodata.ditvi/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/biodata.ditvi/static/media/slick.c94f7671dcc99dce43e2.ttf",
-    "static/media/slick.woff": "/biodata.ditvi/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/biodata.ditvi/index.html",
-    "main.70b2fd7f.css.map": "/biodata.ditvi/static/css/main.70b2fd7f.css.map",
-    "main.2e30020f.js.map": "/biodata.ditvi/static/js/main.2e30020f.js.map",
+    "static/media/slick.woff": "/biodata.ditvi/static/media/slick.295183786cd8a1389865.woff",
+    "main.f7349f02.css.map": "/biodata.ditvi/static/css/main.f7349f02.css.map",
+    "main.45532633.js.map": "/biodata.ditvi/static/js/main.45532633.js.map",
     "453.e5fbf87c.chunk.js.map": "/biodata.ditvi/static/js/453.e5fbf87c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.70b2fd7f.css",
-    "static/js/main.2e30020f.js"
+    "static/css/main.f7349f02.css",
+    "static/js/main.45532633.js"
   ]
 }
