@@ -1,3 +1,17 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Disallow:
+[
+    {"label": "Date of Birth", "value": "01 January 1995"}, 
+    {"label": "Height", "value": "5'10\""},
+     {"label": "Complexion", "value": "Fair"}, 
+     {"label": "Caste", "value": "Hindu, Brahmin"}
+]
+
+item.value
+
+[
+    {"salary": "8 LPA", 
+    "company": "Hello", 
+    "position": "Software Engineer", 
+    "experience": "2+"}
+]
+
+item.company
