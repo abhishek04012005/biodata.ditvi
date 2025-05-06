@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/biodata.ditvi/static/css/main.92a4b1a3.css",
-    "main.js": "/biodata.ditvi/static/js/main.3b7cebaa.js",
+    "main.css": "/biodata.ditvi/static/css/main.3085f8eb.css",
+    "main.js": "/biodata.ditvi/static/js/main.b16977c4.js",
     "static/js/952.b4108901.chunk.js": "/biodata.ditvi/static/js/952.b4108901.chunk.js",
     "static/js/453.e5fbf87c.chunk.js": "/biodata.ditvi/static/js/453.e5fbf87c.chunk.js",
-    "static/media/b1112.svg": "/biodata.ditvi/static/media/b1112.37701861f9a17a1b131c1a8027249c71.svg",
-    "static/media/Stark.svg": "/biodata.ditvi/static/media/Stark.800d4b7ae9d0f7118133.svg",
+    "static/media/1112.svg": "/biodata.ditvi/static/media/1112.37701861f9a17a1b131c.svg",
+    "static/media/1111.svg": "/biodata.ditvi/static/media/1111.800d4b7ae9d0f7118133.svg",
     "static/media/dbp_1111.svg": "/biodata.ditvi/static/media/dbp_1111.800d4b7ae9d0f7118133119eb5d67913.svg",
     "static/media/waveorange.svg": "/biodata.ditvi/static/media/waveorange.09e5a0cb2c7ad45565b0.svg",
     "static/media/heroright.svg": "/biodata.ditvi/static/media/heroright.a6858f93b85a9e9e98c550bd5fbb556c.svg",
@@ -33,13 +33,13 @@
     "static/media/slick.ttf": "/biodata.ditvi/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "index.html": "/biodata.ditvi/index.html",
     "static/media/slick.woff": "/biodata.ditvi/static/media/slick.295183786cd8a1389865.woff",
-    "main.92a4b1a3.css.map": "/biodata.ditvi/static/css/main.92a4b1a3.css.map",
-    "main.3b7cebaa.js.map": "/biodata.ditvi/static/js/main.3b7cebaa.js.map",
+    "main.3085f8eb.css.map": "/biodata.ditvi/static/css/main.3085f8eb.css.map",
+    "main.b16977c4.js.map": "/biodata.ditvi/static/js/main.b16977c4.js.map",
     "952.b4108901.chunk.js.map": "/biodata.ditvi/static/js/952.b4108901.chunk.js.map",
     "453.e5fbf87c.chunk.js.map": "/biodata.ditvi/static/js/453.e5fbf87c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.92a4b1a3.css",
-    "static/js/main.3b7cebaa.js"
+    "static/css/main.3085f8eb.css",
+    "static/js/main.b16977c4.js"
   ]
 }

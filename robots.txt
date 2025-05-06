@@ -296,6 +296,8 @@
   }
 
 
+https://api.whatsapp.com/send/?phone=919263767441&text=Hi+Ditvi+Biodata%2C%0A%0AMy+request+details%3A%0ARequest+No.%3A+65%0AName%3A+Ayush+Kumar%0AModel+Type%3A+Professional%0ALanguage%3A+Hi%0A%0AI%27m+waiting+for+further+instructions.+Thank+you%21&type=phone_number&app_absent=0
+
 
 
 
