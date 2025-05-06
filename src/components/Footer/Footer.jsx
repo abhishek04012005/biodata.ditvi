@@ -109,6 +109,24 @@ const Footer = () => {
                                 </li>
                                 <li>
 
+                    {isHomePage ? (
+    <ScrollLink
+        to="biodata"
+        spy={true}
+        smooth={true}
+        offset={-70}
+        duration={500}
+        className="footer-link"
+        activeClass="active"
+    >
+        Biodata
+    </ScrollLink>
+) : (
+    <Link to="/biodata" className="footer-link">Biodata</Link>
+)}
+</li>
+                                <li>
+
                                     {isHomePage ? (
                                         <ScrollLink
                                             to="blog-section"
@@ -128,13 +146,7 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                        <div className="footer-section">
-                            <h3 className="footer-title">Services</h3>
-                            <ul className="footer-list">
-                                <li><Link to="/for-bride" className="footer-link">For Bride</Link></li>
-                                <li><Link to="/for-groom" className="footer-link">For Groom</Link></li>
-                            </ul>
-                        </div>
+                     
 
                         <div className="footer-section">
                             <h3 className="footer-title">Contact Info</h3>

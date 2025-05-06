@@ -12,6 +12,7 @@ import Heading from '../../sturcutre/Heading/Heading';
 import Container from '../../sturcutre/Container/Container';
 import GetNowPopUp from '../../sturcutre/GetNowPopUp/GetNowPopUp';
 import { useNavigate } from 'react-router-dom';
+import { languageEnglish, modelTypeProfessional } from '../../JSON/formConstant';
 
 
 const NextArrow = (props) => {
@@ -33,7 +34,7 @@ const PrevArrow = (props) => {
 
 
 const BiodataCard = ({ data, isHovered, onHover, onLeave, onGetNow, onPreview }) => (
-    <div 
+    <div
         className={`biodata-card ${isHovered ? 'biodata-card-hovered' : ''}`}
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
@@ -61,7 +62,7 @@ const BiodataCard = ({ data, isHovered, onHover, onLeave, onGetNow, onPreview })
 
             <div className="biodata-card-content">
                 <h3 className="biodata-content-title">{data.title}</h3>
-                
+
                 <div className="biodata-price-section">
                     <div className="biodata-price-wrapper">
                         <span className="biodata-price-original">₹{data.originalPrice}</span>
@@ -137,7 +138,7 @@ const BiodataCards = ({ title, biodataDetails }) => {
         <section className="biodata-cards">
             <div className="animated-circle circle-1"></div>
             <div className="animated-circle circle-2"></div>
-            
+
             <Container>
                 <div className="section-header">
                     <div className="header-design">
@@ -154,7 +155,7 @@ const BiodataCards = ({ title, biodataDetails }) => {
                     <Slider {...settings}>
                         {biodataDetails.map((biodata) => (
                             <div className="slider-item" key={biodata.id}>
-                                <BiodataCard 
+                                <BiodataCard
                                     data={biodata}
                                     isHovered={hoveredCard === biodata.id}
                                     onHover={() => setHoveredCard(biodata.id)}
@@ -163,8 +164,8 @@ const BiodataCards = ({ title, biodataDetails }) => {
                                         setSelectedModel(biodata.modelName);
                                         setIsPopupOpen(true);
                                     }}
-                                    onPreview={() => navigate(`/biodata/${biodata.modelName}`, { 
-                                        state: { biodata } 
+                                    onPreview={() => navigate(`/biodata/${biodata.modelName}`, {
+                                        state: { biodata }
                                     })}
                                 />
                             </div>
@@ -172,7 +173,7 @@ const BiodataCards = ({ title, biodataDetails }) => {
                     </Slider>
                 </div>
                 <div className="biodata-more">
-                    <button 
+                    <button
                         className="biodata-more-btn"
                         onClick={() => navigate(`/${title.toLowerCase().replace(/\s+/g, '-')}`)}
                     >
@@ -189,6 +190,9 @@ const BiodataCards = ({ title, biodataDetails }) => {
                     setSelectedModel('');
                 }}
                 modelNumber={selectedModel}
+                language={languageEnglish}
+                modelType={modelTypeProfessional}
+
             />
         </section>
     );

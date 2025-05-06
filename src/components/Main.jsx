@@ -1,12 +1,13 @@
 import React from 'react'
 import Hero from './Hero/Hero'
 import WhyUs from './WhyUs/WhyUs'
-import ForBride from './ForBride/ForBride'
-import ForGroom from './ForGroom/ForGroom'
+import Biodata from './Biodata/Biodata'
 import Testimonials from './Testimonials/Testimonials'
 import Contact from './ContactUs/ContactUs'
 import HowWeWork from './HowWeWorks/HowWeWork'
 import Blog from './Blog/Blog'
+
+
 
 const Main = () => {
     return (
@@ -14,13 +15,13 @@ const Main = () => {
             <Hero />
             <WhyUs />
             <HowWeWork />
-            <ForBride />
-            <ForGroom />
+            <Biodata />
             <Testimonials />
             <Blog />
             <Contact />
         </>
-    )
-}
+    );
+};
 
-export default Main
+
+export default Main;

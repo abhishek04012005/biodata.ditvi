@@ -331,3 +331,152 @@
         display: none;
     }
 }
+
+
+
+
+
+
+
+
+/* Add these styles to your existing CSS */
+.biodatadetails-variants {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    justify-content: center;
+}
+
+.variant-option {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    background: white;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.variant-option.active {
+    border-color: var(--primary-color);
+    background: rgba(255, 135, 15, 0.05);
+}
+
+.variant-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.variant-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+.variant-option:hover .variant-label,
+.variant-option.active .variant-label {
+    color: var(--primary-color);
+}
+
+.biodatadetails-image img {
+    transition: opacity 0.3s ease;
+}
+
+.biodatadetails-image:not(.loaded) img {
+    opacity: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .biodatadetails-variants {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .variant-option {
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+    }
+}
+
+
+.biodatadetails-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.options-title {
+    color: var(--text-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Update existing variant-option styles */
+.variant-option {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    background: white;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.variant-option.active {
+    border-color: var(--primary-color);
+    background: rgba(255, 135, 15, 0.05);
+}
+
+.variant-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.variant-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+.variant-option:hover .variant-label,
+.variant-option.active .variant-label {
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .radio-group {
+        flex-direction: column;
+    }
+
+    .variant-option {
+        width: 100%;
+        justify-content: center;
+    }
+}

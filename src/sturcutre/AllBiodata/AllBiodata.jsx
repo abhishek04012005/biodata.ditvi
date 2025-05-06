@@ -7,7 +7,8 @@ import Container from '../../sturcutre/Container/Container';
 import Heading from '../../sturcutre/Heading/Heading';
 import GetNowPopUp from '../../sturcutre/GetNowPopUp/GetNowPopUp';
 import './AllBiodata.css';
-
+import biodataList from '../../JSON/biodataContent';
+import { languageEnglish, modelTypeProfessional } from '../../JSON/formConstant';
 
 const BiodataCard = ({ data, isHovered, onHover, onLeave, onGetNow, onPreview }) => (
     <div 
@@ -62,7 +63,7 @@ const BiodataCard = ({ data, isHovered, onHover, onLeave, onGetNow, onPreview })
     </div>
 );
 
-const AllBiodatas = ({biodataDetails, title}) => {
+const AllBiodata = () => {
     const navigate = useNavigate();
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [selectedModel, setSelectedModel] = useState('');
@@ -79,7 +80,7 @@ const AllBiodatas = ({biodataDetails, title}) => {
                 <div className="allbiodata-header">
                     <div className="allbiodata-header-design">
                         <span className="allbiodata-design-element"></span>
-                        <Heading title={title} />
+                        <Heading title="Biodata" />
                         <span className="allbiodata-design-element"></span>
                     </div>
                     <p className="allbiodata-subtitle">
@@ -88,7 +89,7 @@ const AllBiodatas = ({biodataDetails, title}) => {
                 </div>
 
                 <div className="allbiodata-grid">
-                    {biodataDetails.map((biodata) => (
+                    {biodataList.map((biodata) => (
                         <BiodataCard 
                             key={biodata.id}
                             data={biodata}
@@ -114,9 +115,11 @@ const AllBiodatas = ({biodataDetails, title}) => {
                     setSelectedModel('');
                 }}
                 modelNumber={selectedModel}
+                language={languageEnglish}
+                modelType={modelTypeProfessional}
             />
         </section>
     );
 };
 
-export default AllBiodatas;
+export default AllBiodata;

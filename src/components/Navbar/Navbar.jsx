@@ -4,11 +4,10 @@ import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import Logo from '../../assets/logo.png';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import WorkIcon from '@mui/icons-material/Work';
-import DesignServicesIcon from '@mui/icons-material/DesignServices';
+import DescriptionIcon from '@mui/icons-material/Description';
 import ArticleIcon from '@mui/icons-material/Article';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 
@@ -16,23 +15,14 @@ const navLinks = [
     { id: '', label: 'HOME', icon: <HomeIcon /> },
     { id: 'whyus', label: 'WHY US?', icon: <InfoIcon /> },
     { id: 'how-we-work', label: 'HOW WE WORK', icon: <WorkIcon /> },
-    {
-        id: '',
-        label: 'SERVICES',
-        icon: <DesignServicesIcon />,
-        subMenu: [
-            { id: 'for-bride', label: 'FOR BRIDE' },
-            { id: 'for-groom', label: 'FOR GROOM' }
-        ]
-    },
-    { id: 'blog-section', label: 'BLOG', icon: <ArticleIcon /> },
-    { id: 'contact-section', label: 'CONTACT', icon: <ContactMailIcon /> }
+    { id: 'biodata', label: 'BIODATA', icon: <DescriptionIcon /> },
+    { id: 'blog', label: 'BLOG', icon: <ArticleIcon /> },
+    { id: 'contact', label: 'CONTACT', icon: <ContactMailIcon /> }
 ];
 
 const Navbar = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [activeDropdown, setActiveDropdown] = useState(null);
     const [activeLink, setActiveLink] = useState('');
     const location = useLocation();
     const isHomePage = location.pathname === '/';
@@ -68,10 +58,8 @@ const Navbar = () => {
                                 <li 
                                     key={link.id} 
                                     className={`navbar-item ${activeLink === link.id ? 'navbar-item-active' : ''}`}
-                                    onMouseEnter={() => setActiveDropdown(link.id)}
-                                    onMouseLeave={() => setActiveDropdown(null)}
                                 >
-                                    {isHomePage && !link.subMenu ? (
+                                    {isHomePage && link.id !== '' ? (
                                         <ScrollLink
                                             to={link.id}
                                             className="navbar-link"
@@ -86,9 +74,6 @@ const Navbar = () => {
                                         >
                                             <span className="navbar-link-icon">{link.icon}</span>
                                             <span className="navbar-link-text">{link.label}</span>
-                                            {link.subMenu && (
-                                                <KeyboardArrowDownIcon className="navbar-arrow" />
-                                            )}
                                             <span className="navbar-link-decoration"></span>
                                         </ScrollLink>
                                     ) : (
@@ -102,28 +87,8 @@ const Navbar = () => {
                                         >
                                             <span className="navbar-link-icon">{link.icon}</span>
                                             <span className="navbar-link-text">{link.label}</span>
-                                            {link.subMenu && (
-                                                <KeyboardArrowDownIcon className="navbar-arrow" />
-                                            )}
                                             <span className="navbar-link-decoration"></span>
                                         </Link>
-                                    )}
-
-                                    {link.subMenu && (
-                                        <ul className={`navbar-dropdown ${activeDropdown === link.id ? 'navbar-dropdown-active' : ''}`}>
-                                            {link.subMenu.map((subItem) => (
-                                                <li key={subItem.id} className="navbar-dropdown-item">
-                                                    <Link 
-                                                        to={`/${subItem.id}`}
-                                                        className="navbar-dropdown-link"
-                                                        onClick={() => setIsMobile(false)}
-                                                    >
-                                                        {subItem.label}
-                                                        <span className="navbar-dropdown-decoration"></span>
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
                                     )}
                                 </li>
                             ))}

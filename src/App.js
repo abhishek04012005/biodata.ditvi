@@ -9,39 +9,104 @@ import BlogDetail from './RoutingPages/BlogDetail/BlogDetail'
 import PrivacyPolicy from './RoutingPages/PrivacyPolicy/PrivacyPolicy';
 import TermsOfService from './RoutingPages/TermsOfService/TermsOfService';
 import ScrollToTop from './sturcutre/ScrollToTop/ScrollToTop';
-import ForBride from './RoutingPages/ForBride/ForBride';
-import ForGroom from './RoutingPages/ForGroom/ForGroom';
+import AllBiodata from './sturcutre/AllBiodata/AllBiodata';
 import WhyUs from './components/WhyUs/WhyUs';
 import HowWeWork from './components/HowWeWorks/HowWeWork';
 import Blog from './components/Blog/Blog';
 import Contact from './components/ContactUs/ContactUs';
+import Form from './components/Form/Form';
+import { AdminProvider } from './utils/Admin/AdminContext/AdminContext';
+import AdminRoute from './utils/Admin/AdminRoute';
+import AdminLogin from './utils/Admin/AdminLogin/AdminLogin';
+import AdminDashboard from './utils/Admin/AdminDashboard/AdminDashboard';
+import UserRequestDetail from './utils/Admin/UserRequestDetail/UserRequestDetail';
+import ProductionDashboard from './utils/Admin/ProductionDashboard/ProductionDashboard';
+import ProductionRequestDetail from './utils/Admin/ProductionRequestDetail/ProductionRequestDetail';
+import BiodataPreview from './utils/Admin/BiodataPreview/BiodataPreview';
+
+
+
 
 function App() {
+
   return (
     <div className="App">
-      <Router basename='/biodata.ditvi'>
-        <ScrollToTop />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/biodata/:modelName" element={<BiodataDetails />} />
-          <Route path="/blog" element={<AllBlogs />} />
-          <Route path="/blog/:slug" element={<BlogDetail />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsOfService />} />
-          <Route path="/for-bride" element={<ForBride />} />
-          <Route path="/for-groom" element={<ForGroom />} />
 
-          <Route path="/whyus" element={<WhyUs />} />
-          <Route path="/how-we-work" element={<HowWeWork />} />
-          <Route path="/blog-section" element={<Blog/>} />
-          <Route path="/contact-section" element={<Contact/>} />
 
-        </Routes>
-        <Footer />
-      </Router>
+      <AdminProvider>
+        <Router basename='/biodata.ditvi'>
+          <ScrollToTop />
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/biodata/:modelName" element={<BiodataDetails />} />
+            <Route path="/blog" element={<AllBlogs />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
+
+
+            <Route path="/whyus" element={<WhyUs />} />
+            <Route path="/how-we-work" element={<HowWeWork />} />
+            <Route path="/biodata" element={<AllBiodata />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/form" element={<Form />} />
+
+
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route
+              path="/admin/dashboard"
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
+
+                </AdminRoute>
+              }
+            />
+
+
+            <Route path="/request/:id" element={
+              <AdminRoute>
+                <UserRequestDetail />
+              </AdminRoute>
+            } />
+
+
+            <Route path="/admin/production" element={
+              <AdminRoute>
+                <ProductionDashboard />
+              </AdminRoute>
+            } />
+
+            <Route path="/production/request/:id" element={
+              <AdminRoute>
+                <ProductionRequestDetail />
+              </AdminRoute>
+            } />
+
+            <Route path="/admin/production/preview/:id" element={
+              <AdminRoute>
+                <BiodataPreview />
+              </AdminRoute>
+            } />
+
+            
+
+
+          </Routes>
+
+
+          <Footer />
+        </Router>
+
+      </AdminProvider>
+
     </div>
   );
 }
+
+
+
 
 export default App;

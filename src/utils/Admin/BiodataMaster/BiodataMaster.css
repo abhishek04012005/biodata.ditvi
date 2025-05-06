@@ -1,0 +1,515 @@
+:root {
+    --primary-biodata-master-color: #90191e;
+    --secondary-biodata-master-color: #fff5f5;
+    --accent-biodata-master-color: #8b0000;
+    --text-biodata-master-color: #2c0000;
+    --a4-width: 21cm;
+    --a4-height: 29.7cm;
+    --page-padding: 0cm;
+}
+
+.biodata-master-biodata-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.biodata-master-actions {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 10;
+}
+
+.biodata-master-actions-left {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 10;
+}
+
+.biodata-master-print-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.biodata-master-print-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4);
+}
+
+.biodata-master-print-button:active {
+    transform: translateY(-1px);
+}
+
+/* Button shine effect */
+.biodata-master-print-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: buttonShine 3s linear infinite;
+}
+
+.biodata-master-a4-container {
+    width: var(--a4-width);
+    height: var(--a4-height);
+    padding: var(--page-padding);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.biodata-master-biodata-content {
+    margin: 8rem 4.5rem 0rem 4.5rem;
+    
+}
+
+/* ============================================================   Header Section   ============================================================ */
+
+
+
+/* ============================================================   Personal Section   ============================================================ */
+
+
+
+.biodata-master-personal-section {
+    display: flex;
+}
+
+.biodata-master-photo-section {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+.biodata-master-photo-frame {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-biodata-master-color);
+    overflow: hidden;
+}
+
+.biodata-master-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.biodata-master-name-text h3 {
+    color: var(--primary-biodata-master-color);
+}
+
+/* ============================================================   Tables   ============================================================ */
+
+.biodata-master-bio-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .biodata-master-bio-table th,
+  .biodata-master-bio-table td {
+    padding: 0.4rem;
+    /* font-size: 0.9rem; */
+  }
+  
+  .biodata-master-bio-table th {
+    background: var(--primary-biodata-master-color);
+    color: white;
+    font-weight: 500;
+    width: 130px;
+    text-align: center;
+  }
+  
+  .biodata-master-bio-table tr:nth-child(even) {
+    background: rgba(255, 0, 0, 0.075);
+  }
+  
+  .biodata-master-bio-table td {
+    font-weight: bold;
+    color: var(--primary-biodata-master-color);
+  }
+
+.biodata-master-personal-info {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.biodata-master-flex-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: var(--primary-biodata-master-color);
+}
+
+.biodata-master-personal-icon-alignment {
+    display: flex;
+    justify-content: left;
+    align-items: end;
+    gap: 0.5rem;
+}
+
+.professional-margin {
+    margin-top: -2rem;
+}
+
+/* .biodata-master-print-button {
+    width: 10%;
+    display: block;
+    
+} */
+
+
+/* Hide print button when printing */
+@media print {
+    .biodata-master-print-button {
+      display: none !important;
+    }
+  
+    /* Reset all margins and padding for print */
+    @page {
+      margin: 0;
+      padding: 0;
+    }
+  
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  
+    .biodata-master-biodata-page {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  
+    .biodata-master-a4-container {
+      margin: 0 !important;
+      padding: 0 !important;
+      /* Remove any box shadows or borders for print */
+      box-shadow: none !important;
+      border: none !important;
+    }
+  
+    /* Hide everything except the A4 container */
+    body * {
+      visibility: hidden;
+    }
+  
+    .biodata-master-a4-container,
+    .biodata-master-a4-container * {
+      visibility: visible;
+    }
+  
+    .biodata-master-a4-container {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  /* Update table column widths for family section */
+.family-section .biodata-master-bio-table th,
+.family-section .biodata-master-bio-table td {
+    width: 25%; /* Equal width for 4 columns */
+    padding: 8px;
+}
+
+
+.biodata-master-section-title {
+    margin-block: -0.5rem;
+}
+
+.biodata-master-personal-section {
+    margin-top: -1.2rem;
+}
+
+
+.font-size-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.biodata-master-font-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.biodata-master-font-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 135, 15, 0.3);
+}
+
+.biodata-master-font-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .font-size-controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+  }
+}
+
+
+
+
+
+
+.biodata-master-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.biodata-master-popup-content {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease;
+}
+
+.biodata-master-popup-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-radius: 20px 20px 0 0;
+}
+
+.biodata-master-popup-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.biodata-master-popup-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.biodata-master-popup-close:hover {
+  transform: rotate(90deg);
+}
+
+.biodata-master-popup-body {
+  padding: 2rem;
+}
+
+.popup-greeting {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+}
+
+.popup-details {
+  background: rgba(255, 135, 15, 0.05);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.detail-label {
+  color: var(--text-light);
+}
+
+.detail-value {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.popup-text {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.popup-message {
+  background: linear-gradient(135deg, #fff5f2 0%, #fff 100%);
+  border-left: 4px solid var(--primary-color);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0 12px 12px 0;
+}
+
+.highlight {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.popup-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.signature {
+  color: var(--text-light);
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .biodata-master-popup-content {
+      width: 95%;
+      margin: 1rem;
+  }
+
+  .biodata-master-popup-header {
+      padding: 1rem;
+  }
+
+  .biodata-master-popup-body {
+      padding: 1rem;
+  }
+
+  .popup-greeting {
+      font-size: 1.3rem;
+  }
+}
+
+.font-size-controls {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.font-control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.font-control-group:last-child {
+  margin-bottom: 0;
+}
+
+.font-control-label {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  min-width: 60px;
+}
+
+.biodata-master-font-button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.biodata-master-font-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 135, 15, 0.3);
+}
+
+.biodata-master-font-button:active {
+  transform: translateY(0);
+}

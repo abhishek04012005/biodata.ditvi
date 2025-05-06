@@ -1,0 +1,116 @@
+.for-groom-inner {
+    padding: 8rem 0;
+    background-image: url(../../assets/waveorange.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+}
+
+
+
+.forGroom-card {
+    padding: 20px 15px;
+    box-sizing: border-box;
+    text-align: left;
+    transition: 0.1s ease-in-out;
+}
+
+.forGroom-card:hover {
+    transform: scale(1.05);
+}
+
+.forGroom-content {
+    /* background-color: var(--primary-color); */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.9), 0 6px 20px rgba(0, 0, 0, 0.19);
+
+}
+
+.forGroom-biodata-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+
+}
+
+.forGroom-biodata-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.forGroom-biodata-text p {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+.forGroom-biodata-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+
+.forGroom-biodata-btn button {
+    width: 100%;
+    padding: 5px 0;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px 10px 50px 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.forGroom-biodata-btn button:hover {
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    transform: scale(1.05);
+}
+
+
+.custom-arrow {
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+    background-color: var(--primary-color);
+    color: white !important;
+    border-radius: 50%;
+    z-index: 100 !important;
+    position: absolute !important;
+    top: 50% !important;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 1), 0 6px 10px rgba(0, 0, 0, 0.7);
+    transition: 0.2 ease-in-out
+}
+
+.custom-arrow:hover {
+    /* background-color: var(--Blue) !important; */
+    background-color: white !important;
+    color: var(--primary-color) !important;
+}
+
+.slick-prev {
+    left: -15px;
+    /* Adjust according to your layout */
+}
+
+.slick-next {
+    right: -15px;
+
+    /* Adjust according to your layout */
+}
