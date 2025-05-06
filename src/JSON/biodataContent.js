@@ -6,7 +6,7 @@ import Biodata1111Img from "../assets/biodata-1111.png";
 const biodataList = [
     {
         id: 1,
-        modelName: "G-1111",
+        modelName: "1111",
         image: Biodata1111Img, 
         studentImage: "/images/english-student.jpg", 
         hindiImage: "/images/hindi-professional.jpg",
@@ -19,7 +19,7 @@ const biodataList = [
     },
     {
         id: 2,
-        modelName: "G-1112",
+        modelName: "1112",
         image: Biodata1111Img,
         originalPrice: 201,
         discountedPrice: 101,
@@ -29,7 +29,7 @@ const biodataList = [
     },
     {
         id: 3,
-        modelName: "G-1113",
+        modelName: "1113",
         image: Biodata1111Img,
         originalPrice: 201,
         discountedPrice: 101,
@@ -39,7 +39,7 @@ const biodataList = [
     },
     {
         id: 4,
-        modelName: "G-1114",
+        modelName: "1114",
         image: Biodata1111Img,
         originalPrice: 201,
         discountedPrice: 101,
@@ -49,7 +49,7 @@ const biodataList = [
     },
     {
         id: 5,
-        modelName: "G-1115",
+        modelName: "1115",
         image: Biodata1111Img,
         originalPrice: 201,
         discountedPrice: 101,
@@ -59,7 +59,7 @@ const biodataList = [
     },
     {
         id: 6,
-        modelName: "G-1116",
+        modelName: "1116",
         image: Biodata1111Img,
         originalPrice: 201,
         discountedPrice: 101,

@@ -4,7 +4,6 @@ import { supabase } from '../../config/supabase';
 import { School, Work, People, ContactPhone, Print } from '@mui/icons-material';
 import './BiodataMaster.css';
 import Loader from '../../Loader/Loader';
-import backgroundImage1 from '../../../assets/background/b1112.svg';
 import logo from '../../../assets/logo.png';
 
 
@@ -18,8 +17,7 @@ const BiodataMaster = () => {
     const [showWatermark, setShowWatermark] = useState(false);
     // Add this with other state declarations
     const [fontSize, setFontSize] = useState(16); // Default font size in pixels
-    // Add this with your other state declarations at the top
-    const [tableFontSize, setTableFontSize] = useState(14); // Default table font size
+    const [tableFontSize, setTableFontSize] = useState(14); 
 
 
     const getBackgroundImage = (template) => {

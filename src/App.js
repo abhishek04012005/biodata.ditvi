@@ -23,6 +23,7 @@ import UserRequestDetail from './utils/Admin/UserRequestDetail/UserRequestDetail
 import ProductionDashboard from './utils/Admin/ProductionDashboard/ProductionDashboard';
 import ProductionRequestDetail from './utils/Admin/ProductionRequestDetail/ProductionRequestDetail';
 import BiodataPreview from './utils/Admin/BiodataPreview/BiodataPreview';
+import ThankYou from './components/ThankYou/ThankYou';
 
 
 
@@ -52,6 +53,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/form" element={<Form />} />
+            <Route path="/thank-you" element={<ThankYou />} />
 
 
             <Route path="/admin/login" element={<AdminLogin />} />

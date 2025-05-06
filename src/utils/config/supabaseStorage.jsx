@@ -15,7 +15,8 @@ export const BiodataStorage = {
           contact_data: formData.contactData, // This matches the database column name
           profile_url: formData.profileImage,
           guest_detail_id: formData.guestDetailId,
-          biodata_details: formData.biodataDetails
+          biodata_details: formData.biodataDetails,
+          request_number: formData.requestNumber
         }])
         .select()
         .single();
@@ -46,16 +47,16 @@ export const GuestStorage = {
     try {
       const { data, error } = await supabase
         .from('guest_details')
-        .insert([{  
+        .insert({  
           name: guestData.name,
           mobile_number: guestData.whatsapp
-        }])
-        .select('id')
+        })
+        .select('id, request_number')
         .single();
 
       if (error) throw error;
 
-      return data.id;
+      return data;
     } catch (error) {
       console.error('Error saving guest details:', error);
       throw error;

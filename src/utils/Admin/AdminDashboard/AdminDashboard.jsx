@@ -56,7 +56,7 @@ const AdminDashboard = () => {
 
         if (searchQuery) {
             filtered = filtered.filter(request =>
-                request.biodata_details[0]?.mobileNumber?.includes(searchQuery)
+                request.biodata_details?.mobileNumber?.includes(searchQuery)
             );
         }
 
@@ -188,6 +188,7 @@ const AdminDashboard = () => {
                         <table className="dashboard-table">
                             <thead>
                                 <tr>
+                                <th>Request No.</th>
                                     <th>Profile</th>
                                     <th onClick={() => handleSort('name')}>
                                         Name {sortConfig.key === 'name' && <SortIcon />}
@@ -204,6 +205,7 @@ const AdminDashboard = () => {
                             <tbody>
                                 {filteredRequests.map((request) => (
                                     <tr key={request.id}>
+                                        <td>{request.request_number}</td>
                                         <td>
                                             <div className="profile-cell">
                                                 <img
@@ -216,9 +218,10 @@ const AdminDashboard = () => {
                                                 />
                                             </div>
                                         </td>
-                                        <td>{request.biodata_details[0]?.guestName || 'Unnamed'}</td>
+                                        <td>{request.biodata_details?.guestName || 'Unnamed'}</td>
+                                    {console.log("name", request)}
 
-                                        <td>{request.biodata_details[0]?.mobileNumber || 'No Mobile Number'}</td>
+                                        <td>{request.biodata_details?.mobileNumber || 'No Mobile Number'}</td>
                                         <td>{formatDate(request.created_at)}</td>
                                         <td>
                                             <span className={`status-badge ${request.in_production ? 'in-production' : 'pending'}`}>

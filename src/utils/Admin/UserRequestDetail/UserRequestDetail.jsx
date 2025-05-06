@@ -54,7 +54,9 @@ const UserRequestDetail = () => {
                 educationData: data.education_data || [],
                 familyData: data.family_data || [],
                 contactData: data.contact_data || {},
-                profileImage: data.profile_url
+                profileImage: data.profile_url,
+                requestNumber: data.request_number,
+                biodataDetails: data.biodata_details,
             };
 
             setRequestData(transformedData);
@@ -89,7 +91,9 @@ const UserRequestDetail = () => {
                     family_data: requestData.familyData,
                     contact_data: requestData.contactData,
                     profile_url: requestData.profileImage,
-                    original_request_id: id
+                    original_request_id: id,
+                    request_number: requestData.requestNumber,
+                    biodata_details: requestData.biodataDetails
                 }]);
 
             if (productionError) throw productionError;

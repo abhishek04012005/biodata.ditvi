@@ -10,7 +10,7 @@ import Loader from '../../utils/Loader/Loader';
 const Form = () => {
     const location = useLocation();
     const [isLoading, setIsLoading] = useState(false);
-    const { modelNumber, language, modelType, guestDetailId, guestName, mobileNumber } = location.state || {};
+    const { modelNumber, language, modelType, guestDetailId, guestName, mobileNumber, requestNumber } = location.state || {};
     const navigate = useNavigate();
     const [currentStep, setCurrentStep] = useState(0);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -33,7 +33,8 @@ const Form = () => {
             guestName: guestName,
             mobileNumber: mobileNumber
         }],
-        guestDetailId: guestDetailId
+        guestDetailId: guestDetailId,
+        requestNumber: requestNumber
 
     });
 
@@ -126,6 +127,7 @@ const Form = () => {
     };
 
 
+
     const handleAddSibling = (type) => {
         const familyIndex = type === 'brother' ? 2 : 3;
         const newFamilyData = [...formData.familyData];
@@ -149,46 +151,53 @@ const Form = () => {
         setFormData({ ...formData, familyData: newFamilyData });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+ const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        if (currentStep !== steps.length - 1) {
-            handleNext();
-            return;
+    if (currentStep !== steps.length - 1) {
+        handleNext();
+        return;
+    }
+
+    // Validate contact data
+    if (!formData.contactData?.address || !formData.contactData?.mobile) {
+        alert('Please fill in all contact information');
+        return;
+    }
+
+    setIsLoading(true);
+    try {
+        let imageUrl = null;
+        if (selectedImage) {
+            imageUrl = await uploadImage(selectedImage);
         }
 
-        // Validate contact data
-        if (!formData.contactData?.address || !formData.contactData?.mobile) {
-            alert('Please fill in all contact information');
-            return;
-        }
+        const dataToSave = {
+            ...formData,
+            profileImage: imageUrl
+        };
 
-        setIsLoading(true);
-        try {
-            let imageUrl = null;
-            if (selectedImage) {
-                imageUrl = await uploadImage(selectedImage);
-            }
+        const savedData = await BiodataStorage.saveBiodata(dataToSave);
 
-            const dataToSave = {
-                ...formData,
-                profileImage: imageUrl
-            };
-
-            const savedData = await BiodataStorage.saveBiodata(dataToSave);
-
-            navigate('/preview/DBP_1111', {
-                state: {
-                    uploadedData: savedData
+        // Navigate to thank you page with order details
+        navigate('/thank-you', {
+            state: {
+                requestDetails: {
+                    requestNumber: requestNumber, // Or however you generate order IDs
+                    modelType: modelType,
+                    language: language,
+                    name: guestName,
+                    mobileNumber: mobileNumber
                 }
-            });
-        } catch (error) {
-            console.error('Error saving biodata:', error);
-            alert('Failed to save biodata');
-        } finally {
-            setIsLoading(false);
-        }
-    };
+            }
+        });
+    } catch (error) {
+        console.error('Error saving biodata:', error);
+        alert('Failed to save biodata');
+    } finally {
+        setIsLoading(false);
+    }
+};
 
     const renderStepContent = () => {
         switch (currentStep) {

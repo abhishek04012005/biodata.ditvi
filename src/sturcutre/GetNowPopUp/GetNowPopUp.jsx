@@ -12,7 +12,7 @@ const GetNowPopUp = ({ isOpen, onClose, modelNumber, language, modelType }) => {
         whatsapp: '',
     });
 
-   
+
 
 
 
@@ -22,9 +22,11 @@ const GetNowPopUp = ({ isOpen, onClose, modelNumber, language, modelType }) => {
 
 
         try {
-            const guestDetailId = await GuestStorage.saveGuestDetails({
+            const guestDetail = await GuestStorage.saveGuestDetails({
                 ...formData
             });
+
+            console.log('Guest details saved:', guestDetail);
 
 
             navigate('/form', {
@@ -32,14 +34,15 @@ const GetNowPopUp = ({ isOpen, onClose, modelNumber, language, modelType }) => {
                     modelNumber: modelNumber,
                     language: language,
                     modelType: modelType,
-                    guestDetailId: guestDetailId,
+                    guestDetailId: guestDetail.id,
+                    requestNumber: guestDetail.request_number,
                     guestName: formData.name,
-                    mobileNumber: formData.whatsapp
+                    mobileNumber: formData.whatsapp,
                 }
             });
 
         } catch (err) {
-           
+
             console.error('Error submitting form:', err);
         } finally {
             setIsLoading(false);
