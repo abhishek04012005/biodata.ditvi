@@ -140,7 +140,7 @@ const BiodataCards = ({ title, biodataDetails }) => {
             <div className="animated-circle circle-2"></div>
 
             <Container>
-                <div className="section-header">
+                <div className=".section-header-h">
                     <div className="header-design">
                         <span className="design-element"></span>
                         <Heading title={title} />

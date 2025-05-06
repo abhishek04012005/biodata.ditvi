@@ -332,7 +332,7 @@ const Form = () => {
             case 3: // Education Information
                 return (
                     <div className="form-section">
-                        <div className="section-header">
+                        <div className="section-header-h">
                             <h2>Education Information</h2>
                             {formData.educationData.length < 5 && (
                                 <button

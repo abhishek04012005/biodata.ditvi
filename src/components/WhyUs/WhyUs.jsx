@@ -52,7 +52,7 @@ const WhyUs = () => {
 
 
 
-                    <div className="section-header">
+                    <div className="section-header-h">
                         <div className="header-design">
                             <span className="design-element"></span>
                             <Heading title="Why Us?" />

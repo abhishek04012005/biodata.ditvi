@@ -11,15 +11,15 @@ import Blog from './Blog/Blog'
 
 const Main = () => {
     return (
-        <>
-            <Hero />
-            <WhyUs />
-            <HowWeWork />
-            <Biodata />
-            <Testimonials />
-            <Blog />
-            <Contact />
-        </>
+            <div className="App">
+                <Hero />
+                <WhyUs />
+                <HowWeWork />
+                <Biodata />
+                <Testimonials />
+                <Blog />
+                <Contact />
+            </div>
     );
 };
 

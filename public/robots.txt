@@ -1,17 +1,306 @@
-[
-    {"label": "Date of Birth", "value": "01 January 1995"}, 
-    {"label": "Height", "value": "5'10\""},
-     {"label": "Complexion", "value": "Fair"}, 
-     {"label": "Caste", "value": "Hindu, Brahmin"}
-]
+:root {
+    --form-gradient: linear-gradient(135deg, #fff5f2 0%, #fff 100%);
+    --primary-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 40px rgba(255, 135, 15, 0.2);
+  }
+  
+  /* Main Container */
+  .stepper-form-container {
+    max-width: min(1200px, 95%);
+    margin: 6rem auto 2rem;
+    padding: clamp(1rem, 3vw, 2.5rem);
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+  }
+  
+  /* Stepper Header */
+  .stepper-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: clamp(0.5rem, 2vw, 2rem);
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+    background: var(--form-gradient);
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+  
+  .step {
+    text-align: center;
+    padding: 0.5rem;
+  }
+  
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+  }
+  
+  .step.active .step-number,
+  .step.completed .step-number {
+    background: var(--primary-gradient);
+    border-color: transparent;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .step-label {
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    color: var(--text-dark);
+  }
+  
+  /* Form Sections */
+  .form-section {
+    background: white;
+    padding: clamp(1rem, 3vw, 2rem);
+    border-radius: 15px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2rem;
+  }
+  
+  .form-section h2 {
+    color: var(--primary-color);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(255, 135, 15, 0.1);
+  }
+  
+  /* Form Inputs */
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background: var(--form-gradient);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(255, 135, 15, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  /* Image Upload */
+  .image-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .image-upload-label {
+    cursor: pointer;
+  }
+  
+  .image-input {
+    display: none;
+  }
+  
+  .upload-button {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+  
+  .upload-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .image-preview {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .remove-image-btn {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .remove-image-btn:hover {
+    background: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* Navigation Buttons */
+  .form-navigation {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid rgba(255, 135, 15, 0.1);
+  }
+  
+  .nav-button {
+    flex: 1;
+    padding: clamp(0.8rem, 2vw, 1.2rem);
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+  }
+  
+  .nav-button.next {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+  }
+  
+  .nav-button.prev {
+    background: white;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+  }
+  
+  .nav-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .nav-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  /* Preview Section */
+  .preview-section {
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .preview-group {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+  }
+  
+  .preview-group:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  .preview-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--form-gradient);
+    border-radius: 8px;
+  }
+  
+  .preview-item label {
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+  
+  .preview-item span {
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .stepper-header {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  
+    .step:nth-child(n+5) {
+      display: none;
+    }
+  
+    .form-navigation {
+      flex-direction: column;
+    }
+  
+    .nav-button {
+      width: 100%;
+    }
+    
+    .preview-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .stepper-header {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    .step:nth-child(n+4) {
+      display: none;
+    }
+  
+    .image-preview {
+      width: 150px;
+      height: 150px;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-item.value
 
-[
-    {"salary": "8 LPA", 
-    "company": "Hello", 
-    "position": "Software Engineer", 
-    "experience": "2+"}
-]
 
-item.company
+
+
+
+
+
+
+
