@@ -33,17 +33,36 @@ const AdminDashboard = () => {
         filterAndSortRequests();
     }, [requests, searchQuery, sortConfig]);
 
+  
+
     const fetchRequests = async () => {
         try {
             const { data, error } = await supabase
                 .from('user_requests')
-                .select('*')
+                .select(`
+                    *,
+                    guest_details(
+                        name,
+                        mobile_number,
+                        request_number
+                    )
+                `)
                 .eq('deleted', false)
                 .order('created_at', { ascending: false });
 
             if (error) throw error;
-            setRequests(data);
-            console.log("data", data);
+
+            // Transform the data to include guest details
+            const transformedData = data.map(request => ({
+                ...request,
+                biodata_details: {
+                    guestName: request.guest_details?.name,
+                    mobileNumber: request.guest_details?.mobile_number,
+                    requestNumber: request.guest_details?.request_number
+                }
+            }));
+
+            setRequests(transformedData);
         } catch (error) {
             console.error('Error fetching requests:', error);
         } finally {
@@ -125,7 +144,11 @@ const AdminDashboard = () => {
                     <PersonIcon className="admin-icon" />
                     <div className="admin-info">
                         <span className="admin-welcome">Welcome,</span>
-                        <h2 className="admin-name">{adminData?.username || 'Admin123'}</h2>
+                        <h2 className="admin-name"> {adminData ? (
+                                adminData.name || 'No username set'
+                            ) : (
+                                'Loading...'
+                            )}</h2>
                     </div>
                 </div>
                 <button className="logout-btn" onClick={handleLogout}>
@@ -188,7 +211,7 @@ const AdminDashboard = () => {
                         <table className="dashboard-table">
                             <thead>
                                 <tr>
-                                <th>Request No.</th>
+                                    <th>Request No.</th>
                                     <th>Profile</th>
                                     <th onClick={() => handleSort('name')}>
                                         Name {sortConfig.key === 'name' && <SortIcon />}
@@ -219,7 +242,7 @@ const AdminDashboard = () => {
                                             </div>
                                         </td>
                                         <td>{request.biodata_details?.guestName || 'Unnamed'}</td>
-                                    {console.log("name", request)}
+                                        {console.log("name", request)}
 
                                         <td>{request.biodata_details?.mobileNumber || 'No Mobile Number'}</td>
                                         <td>{formatDate(request.created_at)}</td>

@@ -22,6 +22,9 @@ export const AdminProvider = ({ children }) => {
         setLoading(false);
     };
 
+
+    
+
     const loginAdmin = async (username, password) => {
         try {
             const { data, error } = await supabase
@@ -29,8 +32,10 @@ export const AdminProvider = ({ children }) => {
                 .select()
                 .eq('username', username)
                 .eq('password', password)
+                .select('username, name')
                 .single();
 
+                
             if (error) throw error;
 
             if (data) {

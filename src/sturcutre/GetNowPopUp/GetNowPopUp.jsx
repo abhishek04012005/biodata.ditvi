@@ -14,8 +14,6 @@ const GetNowPopUp = ({ isOpen, onClose, modelNumber, language, modelType }) => {
 
 
 
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
