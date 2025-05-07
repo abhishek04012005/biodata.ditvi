@@ -24,6 +24,7 @@ import ProductionDashboard from './utils/Admin/ProductionDashboard/ProductionDas
 import ProductionRequestDetail from './utils/Admin/ProductionRequestDetail/ProductionRequestDetail';
 import BiodataPreview from './utils/Admin/BiodataPreview/BiodataPreview';
 import ThankYou from './components/ThankYou/ThankYou';
+import UserFeedback from './components/UserFeedback/UserFeedback';
 
 
 
@@ -54,7 +55,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/form" element={<Form />} />
             <Route path="/thank-you" element={<ThankYou />} />
-
+            <Route path="/feedback/:id" element={<UserFeedback />} />
 
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route
