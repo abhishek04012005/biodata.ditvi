@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAdmin } from '../../utils/Admin/AdminContext/AdminContext';
 import { supabase } from '../../utils/config/supabase';
 import Container from '../../sturcutre/Container/Container';
+import PaymentButton from '../../components/Payment/PaymentButton';
 import './CheckStatus.css';
 import STATUS_STEPS from '../../JSON/statusConstant'
 
@@ -169,6 +170,12 @@ const CheckStatus = () => {
                             })}
                         </div>
                     </div>
+                    {true && (
+                        <PaymentButton 
+                            requestNumber={id} 
+                            amount={2999} // Replace with your actual amount
+                        />
+                    )}
 
                     {canUpdateStatus && (
                         <button 
