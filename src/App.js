@@ -26,6 +26,7 @@ import BiodataPreview from './utils/Admin/BiodataPreview/BiodataPreview';
 import ThankYou from './components/ThankYou/ThankYou';
 import UserFeedback from './components/UserFeedback/UserFeedback';
 import CheckStatus from './components/CheckStatus/CheckStatus';
+import PaymentSuccess from './components/Payment/PaymentSuccess';
 
 
 
@@ -60,6 +61,7 @@ function App() {
             <Route path="/status/:id" element={<CheckStatus />} />
 
             <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/payment-success/:paymentId" element={<PaymentSuccess />} />
             <Route
               path="/admin/dashboard"
               element={
