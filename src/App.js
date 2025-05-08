@@ -25,6 +25,7 @@ import ProductionRequestDetail from './utils/Admin/ProductionRequestDetail/Produ
 import BiodataPreview from './utils/Admin/BiodataPreview/BiodataPreview';
 import ThankYou from './components/ThankYou/ThankYou';
 import UserFeedback from './components/UserFeedback/UserFeedback';
+import CheckStatus from './components/CheckStatus/CheckStatus';
 
 
 
@@ -56,6 +57,7 @@ function App() {
             <Route path="/form" element={<Form />} />
             <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/feedback/:id" element={<UserFeedback />} />
+            <Route path="/status/:id" element={<CheckStatus />} />
 
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route
@@ -94,6 +96,10 @@ function App() {
               </AdminRoute>
             } />
 
+<Route path="/status/:id" element={
+   <AdminRoute>
+   <CheckStatus />
+ </AdminRoute>} />
             
 
 

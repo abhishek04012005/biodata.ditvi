@@ -16,7 +16,8 @@ export const BiodataStorage = {
           profile_url: formData.profileImage,
           guest_detail_id: formData.guestDetailId,
           biodata_details: formData.biodataDetails,
-          request_number: formData.requestNumber
+          request_number: formData.requestNumber,
+          status: formData.status,
         }])
         .select()
         .single();

@@ -34,7 +34,11 @@ const Form = () => {
             mobileNumber: mobileNumber
         },
         guestDetailId: guestDetailId,
-        requestNumber: requestNumber
+        requestNumber: requestNumber,
+        status: [{
+            status_number: 1,
+            updated_at: new Date().toISOString()
+        }]
 
     });
 
