@@ -12,7 +12,7 @@ import Loader from '../../Loader/Loader';
 import AdminHeader from '../AdminHeader/AdminHeader';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-// import STATUS_STEPS from '../../../JSON/statusConstant'
+import STATUS_STEPS from '../../../JSON/statusConstant'
 
 
 
@@ -25,6 +25,7 @@ const AdminDashboard = () => {
     const [filteredRequests, setFilteredRequests] = useState([]);
     const [deleteId, setDeleteId] = useState(null);
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+    const statusFlow = STATUS_STEPS.map(step => step.label);
 
     useEffect(() => {
         fetchRequests();
@@ -106,6 +107,7 @@ const AdminDashboard = () => {
 
 
     const getLatestStatus = (statusArray) => {
+        console.log("statusArray", statusArray);
         if (!Array.isArray(statusArray) || statusArray.length === 0) {
             return 'Pending';
         }
@@ -117,10 +119,11 @@ const AdminDashboard = () => {
 
         return latestStatus.status || 'Pending';
     };
+
     const handleMoveForward = async (requestId, currentStatus) => {
-        const statusFlow = ['Pending', 'In Progress', 'Completed', 'Delivered'];
-        const currentIndex = statusFlow.indexOf(currentStatus);
-    
+        console.log("currentStatus", currentStatus);
+        const currentIndex = statusFlow.indexOf(currentStatus.status.status);
+    console.log("currentIndex", currentIndex);
         if (currentIndex < statusFlow.length - 1) {
             const newStatus = statusFlow[currentIndex + 1];
             const currentDate = new Date().toISOString();
@@ -141,8 +144,7 @@ const AdminDashboard = () => {
                 const { error } = await supabase
                     .from('user_requests')
                     .update({
-                        status: [...currentStatusArray, statusUpdate],
-                        in_production: newStatus === 'In Progress'
+                        status: [...currentStatusArray, statusUpdate]
                     })
                     .eq('id', requestId);
     
@@ -156,7 +158,6 @@ const AdminDashboard = () => {
     };
     
     const handleMoveBackward = async (requestId, currentStatus) => {
-        const statusFlow = ['Pending', 'In Progress', 'Completed', 'Delivered'];
         const currentIndex = statusFlow.indexOf(currentStatus);
     
         if (currentIndex > 0) {
@@ -317,7 +318,6 @@ const AdminDashboard = () => {
                                         <td>{request.request_number}</td>
 
                                         <td>{request.biodata_details?.guestName || 'Unnamed'}</td>
-                                        {console.log("name", request)}
 
                                         <td>{request.biodata_details?.mobileNumber || 'No Mobile Number'}</td>
                                         <td>{formatDate(request.created_at)}</td>
@@ -334,7 +334,6 @@ const AdminDashboard = () => {
 
 
                                         <td>
-
                                             {getLatestStatus(request.status)}
 
                                         </td>
@@ -343,18 +342,19 @@ const AdminDashboard = () => {
                                             <button
                                                 className="action-btn backward"
                                                 onClick={() => handleMoveBackward(request.id, getLatestStatus(request.status))}
-                                                disabled={getLatestStatus(request.status) === 'Pending'}
+                                                disabled={getLatestStatus(request.status) === 'Request Received'}
                                             >
                                                 <ArrowBackIcon />
                                             </button>
                                             <button
                                                 className="action-btn forward"
-                                                onClick={() => handleMoveForward(request.id, getLatestStatus(request.status))}
-                                                disabled={getLatestStatus(request.status) === 'Delivered'}
+                                                onClick={() => handleMoveForward(request.id, getLatestStatus(request.status.status))}
+                                                disabled={getLatestStatus(request.status) === 'Request Fulfilled'}
                                             >
                                                 <ArrowForwardIcon />
                                             </button>
                                         </td>
+
 
                                         <td>
                                             <Link to={`/request/${request.id}`} className="view-btn">
