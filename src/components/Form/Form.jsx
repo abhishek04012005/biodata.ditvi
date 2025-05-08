@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { BiodataStorage } from '../../utils/config/supabaseStorage';
 import { uploadImage } from '../../utils/config/uploadImage';
+import STATUS_STEPS from '../../JSON/statusConstant';
 
 import './Form.css';
 import { defaultName, personalData, professionalData, educationData, familyData, contactData } from '../../JSON/formConstant';
@@ -36,6 +37,7 @@ const Form = () => {
         guestDetailId: guestDetailId,
         requestNumber: requestNumber,
         status: [{
+            status: STATUS_STEPS[0].label,
             status_number: 1,
             updated_at: new Date().toISOString()
         }]

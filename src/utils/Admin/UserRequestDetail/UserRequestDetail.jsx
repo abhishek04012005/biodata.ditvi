@@ -14,6 +14,7 @@ import {
 import './UserRequestDetail.css';
 import Container from '../../../sturcutre/Container/Container';
 import Loader from '../../Loader/Loader';
+import { get } from 'react-scroll/modules/mixins/scroller';
 
 const UserRequestDetail = () => {
     // ... your existing state and hooks ...
@@ -68,6 +69,20 @@ const UserRequestDetail = () => {
         }
     };
 
+    const getLatestStatus = (statusArray) => {
+        // console.log("statusArray", statusArray);
+        if (!Array.isArray(statusArray) || statusArray.length === 0) {
+            return 'Pending';
+        }
+
+        // Find the status with the highest status_number
+        const latestStatus = statusArray.reduce((latest, current) => {
+            return (current.status_number > latest.status_number) ? current : latest;
+        });
+
+        return latestStatus.status || 'Pending';
+    };
+
 
     const toggleSection = (section) => {
         setExpandedSections(prev => ({
@@ -75,48 +90,6 @@ const UserRequestDetail = () => {
             [section]: !prev[section]
         }));
     };
-
-    const moveToProduction = async () => {
-        try {
-            setIsMovingToProduction(true);
-
-            // First, insert into production_requests
-            const { data: productionData, error: productionError } = await supabase
-                .from('production_requests')
-                .insert([{
-                    name: requestData.name,
-                    personal_data: requestData.personalData,
-                    professional_data: requestData.professionalData,
-                    education_data: requestData.educationData,
-                    family_data: requestData.familyData,
-                    contact_data: requestData.contactData,
-                    profile_url: requestData.profileImage,
-                    original_request_id: id,
-                    request_number: requestData.requestNumber,
-                    biodata_details: requestData.biodataDetails
-                }]);
-
-            if (productionError) throw productionError;
-
-            // Then update user_requests
-            const { error: updateError } = await supabase
-                .from('user_requests')
-                .update({ in_production: true })
-                .eq('id', id);
-
-            if (updateError) throw updateError;
-
-            alert('Successfully moved to production!');
-            navigate(`/request/${id}`);
-        } catch (error) {
-            console.error('Error moving to production:', error);
-            alert('Failed to move to production');
-        } finally {
-            setIsMovingToProduction(false);
-        }
-    };
-
-    // ... Keep all your existing functions (fetchRequestDetail, toggleSection, moveToProduction) ...
 
     if (loading) return (
         <Loader />
@@ -146,16 +119,6 @@ const UserRequestDetail = () => {
                             <ArrowBack />
                             <span>Back to Dashboard</span>
                         </button>
-                        <div className="detail-actions">
-
-                            <button
-                                className={`action-btn production-btn ${requestData.in_production ? 'in-production' : ''}`}
-                                onClick={moveToProduction}
-                                disabled={isMovingToProduction || requestData.in_production}
-                            >
-                                {requestData.in_production ? 'In Production' : 'Move to Production'}
-                            </button>
-                        </div>
                     </div>
 
                     <div className="detail-profile">
@@ -176,8 +139,8 @@ const UserRequestDetail = () => {
                                 })}
                             </p>
                             <div className="profile-status">
-                                <span className={`status-badge ${requestData.in_production ? 'in-production' : 'pending'}`}>
-                                    {requestData.in_production ? 'In Production' : 'Pending'}
+                                <span className={`status-badge ${requestData.status ? 'in-production' : 'pending'}`}>
+                                    {getLatestStatus(requestData.status)}
                                 </span>
                             </div>
                         </div>

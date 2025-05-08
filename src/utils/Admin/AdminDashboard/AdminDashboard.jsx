@@ -17,7 +17,6 @@ import STATUS_STEPS from '../../../JSON/statusConstant'
 
 
 const AdminDashboard = () => {
-    const navigate = useNavigate();
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
@@ -25,7 +24,6 @@ const AdminDashboard = () => {
     const [filteredRequests, setFilteredRequests] = useState([]);
     const [deleteId, setDeleteId] = useState(null);
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-    const statusFlow = STATUS_STEPS.map(step => step.label);
 
     useEffect(() => {
         fetchRequests();
@@ -33,6 +31,7 @@ const AdminDashboard = () => {
 
     useEffect(() => {
         filterAndSortRequests();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [requests, searchQuery, sortConfig]);
 
 
@@ -49,6 +48,12 @@ const AdminDashboard = () => {
                     deleted,
                     profile_url,
                     biodata_details,
+                    personal_data,
+                    professional_data,
+                    education_data,
+                    family_data,
+                    contact_data,
+                    name,
                     status
                 `)
                 .eq('deleted', false)
@@ -105,9 +110,35 @@ const AdminDashboard = () => {
         setFilteredRequests(filtered);
     };
 
+    const moveToProduction = async (requestData) => {
+        console.log("requestData", requestData);
+        try {
+            const { error: productionError } = await supabase
+                .from('production_requests')
+                .insert([{
+                    name: requestData.name,
+                    personal_data: requestData.personal_data,
+                    professional_data: requestData.professional_data,
+                    education_data: requestData.education_data,
+                    family_data: requestData.family_data,
+                    contact_data: requestData.contact_data,
+                    profile_url: requestData.profile_url,
+                    original_request_id: requestData.id,
+                    request_number: requestData.request_number,
+                    biodata_details: requestData.biodata_details
+                }]);
+    
+            if (productionError) throw productionError;
+    
+        } catch (error) {
+            console.error('Error moving to production:', error);
+            alert('Failed to move to production');
+        }
+    };
+
 
     const getLatestStatus = (statusArray) => {
-        console.log("statusArray", statusArray);
+        // console.log("statusArray", statusArray);
         if (!Array.isArray(statusArray) || statusArray.length === 0) {
             return 'Pending';
         }
@@ -121,11 +152,10 @@ const AdminDashboard = () => {
     };
 
     const handleMoveForward = async (requestId, currentStatus) => {
-        console.log("currentStatus", currentStatus);
-        const currentIndex = statusFlow.indexOf(currentStatus.status.status);
-    console.log("currentIndex", currentIndex);
-        if (currentIndex < statusFlow.length - 1) {
-            const newStatus = statusFlow[currentIndex + 1];
+        const currentIndex = STATUS_STEPS.findIndex(step => step.label === currentStatus);
+        
+        if (currentIndex < STATUS_STEPS.length - 1) {
+            const newStatus = STATUS_STEPS[currentIndex + 1].label;
             const currentDate = new Date().toISOString();
             
             // Find the request to get its current status array
@@ -139,6 +169,8 @@ const AdminDashboard = () => {
                     : 1,
                 updated_at: currentDate
             };
+
+            if(currentIndex === 0) moveToProduction(request);
     
             try {
                 const { error } = await supabase
@@ -158,38 +190,37 @@ const AdminDashboard = () => {
     };
     
     const handleMoveBackward = async (requestId, currentStatus) => {
-        const currentIndex = statusFlow.indexOf(currentStatus);
+        const currentIndex = STATUS_STEPS.findIndex(step => step.label === currentStatus);
     
         if (currentIndex > 0) {
-            const newStatus = statusFlow[currentIndex - 1];
-            const currentDate = new Date().toISOString();
-            
             // Find the request to get its current status array
             const request = requests.find(r => r.id === requestId);
-            const currentStatusArray = request?.status || [];
-            
-            const statusUpdate = {
-                status: newStatus,
-                status_number: currentStatusArray.length > 0 
-                    ? Math.max(...currentStatusArray.map(s => s.status_number)) + 1 
-                    : 1,
-                updated_at: currentDate
-            };
+            let currentStatusArray = request?.status || [];
     
-            try {
-                const { error } = await supabase
-                    .from('user_requests')
-                    .update({
-                        status: [...currentStatusArray, statusUpdate],
-                        in_production: newStatus === 'In Progress'
-                    })
-                    .eq('id', requestId);
+            if (currentStatusArray.length > 0) {
+                // Remove the latest status
+                currentStatusArray.pop();
     
-                if (error) throw error;
-                await fetchRequests();
-            } catch (error) {
-                console.error('Error updating status:', error);
-                alert('Failed to update status');
+                // If there are still statuses left, update the timestamp of the last one
+                if (currentStatusArray.length > 0) {
+                    const lastStatus = currentStatusArray[currentStatusArray.length - 1];
+                    lastStatus.updated_at = new Date().toISOString();
+                }
+    
+                try {
+                    const { error } = await supabase
+                        .from('user_requests')
+                        .update({
+                            status: currentStatusArray
+                        })
+                        .eq('id', requestId);
+    
+                    if (error) throw error;
+                    await fetchRequests();
+                } catch (error) {
+                    console.error('Error updating status:', error);
+                    alert('Failed to update status');
+                }
             }
         }
     };
@@ -348,7 +379,7 @@ const AdminDashboard = () => {
                                             </button>
                                             <button
                                                 className="action-btn forward"
-                                                onClick={() => handleMoveForward(request.id, getLatestStatus(request.status.status))}
+                                                onClick={() => handleMoveForward(request.id, getLatestStatus(request.status))}
                                                 disabled={getLatestStatus(request.status) === 'Request Fulfilled'}
                                             >
                                                 <ArrowForwardIcon />
