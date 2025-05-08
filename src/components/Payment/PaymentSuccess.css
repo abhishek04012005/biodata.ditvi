@@ -1,36 +1,169 @@
-.payment-button {
-    display: inline-flex;
+.payment-success-section {
+    min-height: 100vh;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 24px;
-    background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
-    color: white;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.payment-success-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.success-icon {
+    color: #4CAF50;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.success-icon svg {
+    font-size: 4rem;
+    animation: scaleIn 0.5s ease;
+}
+
+.payment-details {
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.label {
+    color: #666;
+    font-weight: 500;
+}
+
+.value {
+    font-weight: 600;
+    color: #333;
+}
+
+.value-with-copy {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.copy-button {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.copy-button:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.action-buttons button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
     cursor: pointer;
+    font-weight: 500;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
 }
 
-.payment-button:hover {
+.download-receipt {
+    background: var(--primary-color);
+    color: white;
+}
+
+.home-button {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.action-buttons button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.btn-shine {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(45deg);
-    transition: all 0.3s ease;
+.copy-tooltip {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    animation: fadeInOut 2s ease;
 }
 
-.payment-button:hover .btn-shine {
-    transform: rotate(45deg) translate(50%, 50%);
+@keyframes scaleIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, 20px); }
+    20% { opacity: 1; transform: translate(-50%, 0); }
+    80% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -20px); }
+}
+
+.payment-loading,
+.payment-error {
+    text-align: center;
+    padding: 2rem;
+}
+
+.error-icon {
+    font-size: 3rem;
+    color: #f44336;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .payment-success-card {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .value-with-copy {
+        width: 100%;
+        justify-content: space-between;
+    }
 }

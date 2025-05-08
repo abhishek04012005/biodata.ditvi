@@ -1,8 +1,10 @@
 import React from 'react';
 import { supabase } from '../../utils/config/supabase';
+import { useNavigate } from 'react-router-dom';
 import './PaymentButton.css';
 
 const PaymentButton = ({ requestNumber, amount }) => {
+    const navigate = useNavigate();
     const initializePayment = async () => {
         try {
             // First create payment request entry
@@ -31,7 +33,7 @@ const PaymentButton = ({ requestNumber, amount }) => {
                     await handlePaymentSuccess(response, paymentRequest.id);
                 },
                 modal: {
-                    ondismiss: async function() {
+                    ondismiss: async function () {
                         // Handle payment modal dismissal
                         await updatePaymentStatus(paymentRequest.id, 'CANCELLED');
                     }
@@ -80,7 +82,7 @@ const PaymentButton = ({ requestNumber, amount }) => {
             // await updateRequestStatus(requestNumber);
 
             // Redirect to success page
-            window.location.href = `/payment-success/${paymentRequestId}`;
+            navigate(`/payment-success/${paymentRequestId}`);
         } catch (error) {
             console.error('Error updating payment status:', error);
             alert('Payment was successful but status update failed. Please contact support.');

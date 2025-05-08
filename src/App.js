@@ -61,7 +61,7 @@ function App() {
             <Route path="/status/:id" element={<CheckStatus />} />
 
             <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/payment-success/:paymentId" element={<PaymentSuccess />} />
+            <Route path="/payment-success/:paymentRequestId" element={<PaymentSuccess />} />
             <Route
               path="/admin/dashboard"
               element={
