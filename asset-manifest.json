@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/biodata.ditvi/static/css/main.3085f8eb.css",
-    "main.js": "/biodata.ditvi/static/js/main.c83d4e72.js",
+    "main.css": "/biodata.ditvi/static/css/main.0ad047a9.css",
+    "main.js": "/biodata.ditvi/static/js/main.1686d1cd.js",
     "static/js/952.b4108901.chunk.js": "/biodata.ditvi/static/js/952.b4108901.chunk.js",
     "static/js/453.e5fbf87c.chunk.js": "/biodata.ditvi/static/js/453.e5fbf87c.chunk.js",
     "static/media/1112.svg": "/biodata.ditvi/static/media/1112.37701861f9a17a1b131c.svg",
@@ -33,13 +33,13 @@
     "static/media/slick.ttf": "/biodata.ditvi/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "index.html": "/biodata.ditvi/index.html",
     "static/media/slick.woff": "/biodata.ditvi/static/media/slick.295183786cd8a1389865.woff",
-    "main.3085f8eb.css.map": "/biodata.ditvi/static/css/main.3085f8eb.css.map",
-    "main.c83d4e72.js.map": "/biodata.ditvi/static/js/main.c83d4e72.js.map",
+    "main.0ad047a9.css.map": "/biodata.ditvi/static/css/main.0ad047a9.css.map",
+    "main.1686d1cd.js.map": "/biodata.ditvi/static/js/main.1686d1cd.js.map",
     "952.b4108901.chunk.js.map": "/biodata.ditvi/static/js/952.b4108901.chunk.js.map",
     "453.e5fbf87c.chunk.js.map": "/biodata.ditvi/static/js/453.e5fbf87c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3085f8eb.css",
-    "static/js/main.c83d4e72.js"
+    "static/css/main.0ad047a9.css",
+    "static/js/main.1686d1cd.js"
   ]
 }
