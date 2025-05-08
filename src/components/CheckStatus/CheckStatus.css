@@ -274,7 +274,7 @@
     }
 }
 
-.stepper {
+/* .stepper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -341,4 +341,4 @@
     color: var(--text-secondary);
     white-space: nowrap;
     font-weight: 500;
-}
+} */

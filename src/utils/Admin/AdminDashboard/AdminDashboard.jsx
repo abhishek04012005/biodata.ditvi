@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAdmin } from '../AdminContext/AdminContext';
 import { supabase } from '../../config/supabase';
-import LogoutIcon from '@mui/icons-material/Logout';
-import PersonIcon from '@mui/icons-material/Person';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -13,11 +10,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import './AdminDashboard.css';
 import Loader from '../../Loader/Loader';
 import AdminHeader from '../AdminHeader/AdminHeader';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+// import STATUS_STEPS from '../../../JSON/statusConstant'
+
 
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
-    const { logoutAdmin, adminData } = useAdmin();
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
@@ -36,41 +36,6 @@ const AdminDashboard = () => {
 
 
 
-    // const fetchRequests = async () => {
-    //     try {
-    //         const { data, error } = await supabase
-    //             .from('user_requests')
-    //             .select(`
-    //                 *,
-    //                 guest_details(
-    //                     name,
-    //                     mobile_number,
-    //                     request_number
-    //                 )
-    //             `)
-    //             .eq('deleted', false)
-    //             .order('created_at', { ascending: false });
-
-    //         if (error) throw error;
-
-    //         // Transform the data to include guest details
-    //         const transformedData = data.map(request => ({
-    //             ...request,
-    //             biodata_details: {
-    //                 guestName: request.guest_details?.name,
-    //                 mobileNumber: request.guest_details?.mobile_number,
-    //                 requestNumber: request.guest_details?.request_number
-    //             }
-    //         }));
-
-    //         setRequests(transformedData);
-    //     } catch (error) {
-    //         console.error('Error fetching requests:', error);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-
     const fetchRequests = async () => {
         try {
             const { data, error } = await supabase
@@ -82,22 +47,13 @@ const AdminDashboard = () => {
                     in_production,
                     deleted,
                     profile_url,
-                    biodata_details
+                    biodata_details,
+                    status
                 `)
                 .eq('deleted', false)
                 .order('created_at', { ascending: false });
 
             if (error) throw error;
-
-            // Transform the data to include guest details
-            // const transformedData = data.map(request => ({
-            //     ...request,
-            //     biodata_details: {
-            //         guestName: request.biodata_details?.name,
-            //         mobileNumber: request.biodata_details?.mobile_number,
-            //         requestNumber: request.biodata_details?.request_number
-            //     }
-            // }));
 
             setRequests(data);
         } catch (error) {
@@ -105,44 +61,26 @@ const AdminDashboard = () => {
         } finally {
             setLoading(false);
         }
+
+
     };
 
-    // const filterAndSortRequests = () => {
-    //     let filtered = [...requests];
-
-    //     if (searchQuery) {
-    //         filtered = filtered.filter(request =>
-    //             request.biodata_details?.mobileNumber?.includes(searchQuery)
-    //         );
-    //     }
-
-    //     filtered.sort((a, b) => {
-    //         if (sortConfig.key === 'created_at') {
-    //             return sortConfig.direction === 'asc'
-    //                 ? new Date(a.created_at) - new Date(b.created_at)
-    //                 : new Date(b.created_at) - new Date(a.created_at);
-    //         }
-    //         return 0;
-    //     });
-
-    //     setFilteredRequests(filtered);
-    // };
 
 
 
     const filterAndSortRequests = () => {
         let filtered = [...requests];
-    
+
         if (searchQuery) {
             const query = searchQuery.toLowerCase();
             filtered = filtered.filter(request =>
-                // Search by name from biodata_details
-                (request.biodata_details?.guestName?.toLowerCase().includes(query) ||
+            // Search by name from biodata_details
+            (request.biodata_details?.guestName?.toLowerCase().includes(query) ||
                 // Search by request number
                 request.request_number?.toString().includes(query))
             );
         }
-    
+
         filtered.sort((a, b) => {
             if (sortConfig.key === 'created_at') {
                 return sortConfig.direction === 'asc'
@@ -162,16 +100,100 @@ const AdminDashboard = () => {
             }
             return 0;
         });
-    
+
         setFilteredRequests(filtered);
     };
 
 
-    // const handleLogout = () => {
-    //     logoutAdmin();
-    //     navigate('/admin/login');
-    // };
+    const getLatestStatus = (statusArray) => {
+        if (!Array.isArray(statusArray) || statusArray.length === 0) {
+            return 'Pending';
+        }
 
+        // Find the status with the highest status_number
+        const latestStatus = statusArray.reduce((latest, current) => {
+            return (current.status_number > latest.status_number) ? current : latest;
+        });
+
+        return latestStatus.status || 'Pending';
+    };
+    const handleMoveForward = async (requestId, currentStatus) => {
+        const statusFlow = ['Pending', 'In Progress', 'Completed', 'Delivered'];
+        const currentIndex = statusFlow.indexOf(currentStatus);
+    
+        if (currentIndex < statusFlow.length - 1) {
+            const newStatus = statusFlow[currentIndex + 1];
+            const currentDate = new Date().toISOString();
+            
+            // Find the request to get its current status array
+            const request = requests.find(r => r.id === requestId);
+            const currentStatusArray = request?.status || [];
+            
+            const statusUpdate = {
+                status: newStatus,
+                status_number: currentStatusArray.length > 0 
+                    ? Math.max(...currentStatusArray.map(s => s.status_number)) + 1 
+                    : 1,
+                updated_at: currentDate
+            };
+    
+            try {
+                const { error } = await supabase
+                    .from('user_requests')
+                    .update({
+                        status: [...currentStatusArray, statusUpdate],
+                        in_production: newStatus === 'In Progress'
+                    })
+                    .eq('id', requestId);
+    
+                if (error) throw error;
+                await fetchRequests();
+            } catch (error) {
+                console.error('Error updating status:', error);
+                alert('Failed to update status');
+            }
+        }
+    };
+    
+    const handleMoveBackward = async (requestId, currentStatus) => {
+        const statusFlow = ['Pending', 'In Progress', 'Completed', 'Delivered'];
+        const currentIndex = statusFlow.indexOf(currentStatus);
+    
+        if (currentIndex > 0) {
+            const newStatus = statusFlow[currentIndex - 1];
+            const currentDate = new Date().toISOString();
+            
+            // Find the request to get its current status array
+            const request = requests.find(r => r.id === requestId);
+            const currentStatusArray = request?.status || [];
+            
+            const statusUpdate = {
+                status: newStatus,
+                status_number: currentStatusArray.length > 0 
+                    ? Math.max(...currentStatusArray.map(s => s.status_number)) + 1 
+                    : 1,
+                updated_at: currentDate
+            };
+    
+            try {
+                const { error } = await supabase
+                    .from('user_requests')
+                    .update({
+                        status: [...currentStatusArray, statusUpdate],
+                        in_production: newStatus === 'In Progress'
+                    })
+                    .eq('id', requestId);
+    
+                if (error) throw error;
+                await fetchRequests();
+            } catch (error) {
+                console.error('Error updating status:', error);
+                alert('Failed to update status');
+            }
+        }
+    };
+
+  
 
 
     const handleSort = (key) => {
@@ -259,10 +281,10 @@ const AdminDashboard = () => {
                         <div className="search-bar">
                             <SearchIcon />
                             <input
-                               type="text"
-                               placeholder="Search by name or request no."
-                               value={searchQuery}
-                               onChange={(e) => setSearchQuery(e.target.value)}
+                                type="text"
+                                placeholder="Search by name or request no."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
                     </div>
@@ -272,7 +294,7 @@ const AdminDashboard = () => {
                             <thead>
                                 <tr>
                                     <th>Request No.</th>
-                                    <th>Profile</th>
+
                                     <th onClick={() => handleSort('name')}>
                                         Name {sortConfig.key === 'name' && <SortIcon />}
                                     </th>
@@ -280,8 +302,12 @@ const AdminDashboard = () => {
                                     <th onClick={() => handleSort('created_at')}>
                                         Created Date {sortConfig.key === 'created_at' && <SortIcon />}
                                     </th>
+
                                     <th>Status</th>
-                                    <th>Actions</th>
+
+                                    <th>Status Action</th>
+
+                                    <th>Preview</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
@@ -289,31 +315,50 @@ const AdminDashboard = () => {
                                 {filteredRequests.map((request) => (
                                     <tr key={request.id}>
                                         <td>{request.request_number}</td>
-                                        <td>
-                                            <div className="profile-cell">
-                                                <img
-                                                    src={request.profile_url || '/default-profile.png'}
-                                                    alt="Profile"
-                                                    className="profile-thumbnail"
-                                                    onError={(e) => {
-                                                        e.target.src = '/default-profile.png';
-                                                    }}
-                                                />
-                                            </div>
-                                        </td>
+
                                         <td>{request.biodata_details?.guestName || 'Unnamed'}</td>
                                         {console.log("name", request)}
 
                                         <td>{request.biodata_details?.mobileNumber || 'No Mobile Number'}</td>
                                         <td>{formatDate(request.created_at)}</td>
-                                        <td>
+
+
+                                        {/* <td>
                                             <span className={`status-badge ${request.in_production ? 'in-production' : 'pending'}`}>
                                                 {request.in_production ? 'In Production' : 'Pending'}
                                             </span>
+                                        </td> */}
+
+
+
+
+
+                                        <td>
+
+                                            {getLatestStatus(request.status)}
+
                                         </td>
+
+                                        <td className="status-actions">
+                                            <button
+                                                className="action-btn backward"
+                                                onClick={() => handleMoveBackward(request.id, getLatestStatus(request.status))}
+                                                disabled={getLatestStatus(request.status) === 'Pending'}
+                                            >
+                                                <ArrowBackIcon />
+                                            </button>
+                                            <button
+                                                className="action-btn forward"
+                                                onClick={() => handleMoveForward(request.id, getLatestStatus(request.status))}
+                                                disabled={getLatestStatus(request.status) === 'Delivered'}
+                                            >
+                                                <ArrowForwardIcon />
+                                            </button>
+                                        </td>
+
                                         <td>
                                             <Link to={`/request/${request.id}`} className="view-btn">
-                                                View Details
+                                                Preview
                                             </Link>
                                         </td>
                                         <td>

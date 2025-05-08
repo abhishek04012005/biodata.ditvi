@@ -128,13 +128,11 @@ const ThankYou = () => {
                     </button>
                     <button 
                         className="home-button"
-                        onClick={() => navigate('/blog')}
+                        onClick={() => navigate(`/status/${requestDetails.requestNumber}`)}
                     >
                         <HomeIcon />
-                        <span>Back to Home</span>
-                        {timeLeft > 0 && (
-                            <span className="redirect-timer">({timeLeft}s)</span>
-                        )}
+                        <span>Check Status</span>
+
                     </button>
                 </div>
             </div>

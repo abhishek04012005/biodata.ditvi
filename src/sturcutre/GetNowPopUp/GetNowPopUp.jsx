@@ -92,7 +92,7 @@ const GetNowPopUp = ({ isOpen, onClose, modelNumber, language, modelType }) => {
                         </div>
 
                         <button type="submit" className="submit-button">
-                            Submit & Connect on WhatsApp
+                            Save & Continue
                         </button>
                     </form>
                 </div>
