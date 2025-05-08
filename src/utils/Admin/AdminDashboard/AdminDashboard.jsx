@@ -35,34 +35,70 @@ const AdminDashboard = () => {
 
   
 
+    // const fetchRequests = async () => {
+    //     try {
+    //         const { data, error } = await supabase
+    //             .from('user_requests')
+    //             .select(`
+    //                 *,
+    //                 guest_details(
+    //                     name,
+    //                     mobile_number,
+    //                     request_number
+    //                 )
+    //             `)
+    //             .eq('deleted', false)
+    //             .order('created_at', { ascending: false });
+
+    //         if (error) throw error;
+
+    //         // Transform the data to include guest details
+    //         const transformedData = data.map(request => ({
+    //             ...request,
+    //             biodata_details: {
+    //                 guestName: request.guest_details?.name,
+    //                 mobileNumber: request.guest_details?.mobile_number,
+    //                 requestNumber: request.guest_details?.request_number
+    //             }
+    //         }));
+
+    //         setRequests(transformedData);
+    //     } catch (error) {
+    //         console.error('Error fetching requests:', error);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
+
     const fetchRequests = async () => {
         try {
             const { data, error } = await supabase
                 .from('user_requests')
                 .select(`
-                    *,
-                    guest_details(
-                        name,
-                        mobile_number,
-                        request_number
-                    )
+                    id,
+                    created_at,
+                    request_number,
+                    in_production,
+                    deleted,
+                    profile_url,
+                    biodata_details
                 `)
                 .eq('deleted', false)
                 .order('created_at', { ascending: false });
-
+    
             if (error) throw error;
-
+    
             // Transform the data to include guest details
-            const transformedData = data.map(request => ({
-                ...request,
-                biodata_details: {
-                    guestName: request.guest_details?.name,
-                    mobileNumber: request.guest_details?.mobile_number,
-                    requestNumber: request.guest_details?.request_number
-                }
-            }));
-
-            setRequests(transformedData);
+            // const transformedData = data.map(request => ({
+            //     ...request,
+            //     biodata_details: {
+            //         guestName: request.biodata_details?.name,
+            //         mobileNumber: request.biodata_details?.mobile_number,
+            //         requestNumber: request.biodata_details?.request_number
+            //     }
+            // }));
+    
+            setRequests(data);
         } catch (error) {
             console.error('Error fetching requests:', error);
         } finally {
@@ -149,6 +185,7 @@ const AdminDashboard = () => {
                             ) : (
                                 'Loading...'
                             )}</h2>
+                            {console.log("adminData", adminData)}
                     </div>
                 </div>
                 <button className="logout-btn" onClick={handleLogout}>

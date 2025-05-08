@@ -26,13 +26,13 @@ const Form = () => {
         educationData: [...educationData],
         familyData: [...familyData],
         contactData: contactData,
-        biodataDetails: [{
+        biodataDetails: {
             modelNumber: modelNumber,
             language: language,
             modelType: modelType,
             guestName: guestName,
             mobileNumber: mobileNumber
-        }],
+        },
         guestDetailId: guestDetailId,
         requestNumber: requestNumber
 

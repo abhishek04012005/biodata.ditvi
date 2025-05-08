@@ -12,6 +12,7 @@ import {
 } from '@mui/icons-material';
 import './ProductionDashboard.css';
 import Loader from '../../Loader/Loader';
+import AdminHeader from '../AdminHeader/AdminHeader';
 
 const ProductionDashboard = () => {
     const [requests, setRequests] = useState([]);
@@ -103,6 +104,7 @@ const ProductionDashboard = () => {
 
     return (
         <div className="production-dashboard">
+            <AdminHeader/>
             <div className="dashboard-background">
                 <div className="dashboard-circle circle-1"></div>
                 <div className="dashboard-circle circle-2"></div>

@@ -107,7 +107,7 @@ const UserRequestDetail = () => {
             if (updateError) throw updateError;
 
             alert('Successfully moved to production!');
-            navigate('/requests');
+            navigate(`/request/${id}`);
         } catch (error) {
             console.error('Error moving to production:', error);
             alert('Failed to move to production');
