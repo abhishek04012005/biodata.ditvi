@@ -136,6 +136,11 @@
     gap: 1rem;
 }
 
+.footer-list li {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
 .footer-link {
     color: var(--text-light);
     text-decoration: none;
@@ -246,5 +251,11 @@
 
     .footer-circle {
         display: none;
+    }
+
+    .footer-social {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

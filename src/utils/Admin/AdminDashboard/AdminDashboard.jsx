@@ -12,6 +12,7 @@ import SortIcon from '@mui/icons-material/Sort';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './AdminDashboard.css';
 import Loader from '../../Loader/Loader';
+import AdminHeader from '../AdminHeader/AdminHeader';
 
 
 const AdminDashboard = () => {
@@ -33,7 +34,7 @@ const AdminDashboard = () => {
         filterAndSortRequests();
     }, [requests, searchQuery, sortConfig]);
 
-  
+
 
     // const fetchRequests = async () => {
     //     try {
@@ -85,9 +86,9 @@ const AdminDashboard = () => {
                 `)
                 .eq('deleted', false)
                 .order('created_at', { ascending: false });
-    
+
             if (error) throw error;
-    
+
             // Transform the data to include guest details
             // const transformedData = data.map(request => ({
             //     ...request,
@@ -97,7 +98,7 @@ const AdminDashboard = () => {
             //         requestNumber: request.biodata_details?.request_number
             //     }
             // }));
-    
+
             setRequests(data);
         } catch (error) {
             console.error('Error fetching requests:', error);
@@ -106,31 +107,70 @@ const AdminDashboard = () => {
         }
     };
 
+    // const filterAndSortRequests = () => {
+    //     let filtered = [...requests];
+
+    //     if (searchQuery) {
+    //         filtered = filtered.filter(request =>
+    //             request.biodata_details?.mobileNumber?.includes(searchQuery)
+    //         );
+    //     }
+
+    //     filtered.sort((a, b) => {
+    //         if (sortConfig.key === 'created_at') {
+    //             return sortConfig.direction === 'asc'
+    //                 ? new Date(a.created_at) - new Date(b.created_at)
+    //                 : new Date(b.created_at) - new Date(a.created_at);
+    //         }
+    //         return 0;
+    //     });
+
+    //     setFilteredRequests(filtered);
+    // };
+
+
+
     const filterAndSortRequests = () => {
         let filtered = [...requests];
-
+    
         if (searchQuery) {
+            const query = searchQuery.toLowerCase();
             filtered = filtered.filter(request =>
-                request.biodata_details?.mobileNumber?.includes(searchQuery)
+                // Search by name from biodata_details
+                (request.biodata_details?.guestName?.toLowerCase().includes(query) ||
+                // Search by request number
+                request.request_number?.toString().includes(query))
             );
         }
-
+    
         filtered.sort((a, b) => {
             if (sortConfig.key === 'created_at') {
                 return sortConfig.direction === 'asc'
                     ? new Date(a.created_at) - new Date(b.created_at)
                     : new Date(b.created_at) - new Date(a.created_at);
+            } else if (sortConfig.key === 'name') {
+                // Updated name sorting to use biodata_details
+                const nameA = a.biodata_details?.guestName?.toLowerCase() || '';
+                const nameB = b.biodata_details?.guestName?.toLowerCase() || '';
+                return sortConfig.direction === 'asc'
+                    ? nameA.localeCompare(nameB)
+                    : nameB.localeCompare(nameA);
+            } else if (sortConfig.key === 'request_number') {
+                return sortConfig.direction === 'asc'
+                    ? (a.request_number || 0) - (b.request_number || 0)
+                    : (b.request_number || 0) - (a.request_number || 0);
             }
             return 0;
         });
-
+    
         setFilteredRequests(filtered);
     };
 
-    const handleLogout = () => {
-        logoutAdmin();
-        navigate('/admin/login');
-    };
+
+    // const handleLogout = () => {
+    //     logoutAdmin();
+    //     navigate('/admin/login');
+    // };
 
 
 
@@ -175,24 +215,7 @@ const AdminDashboard = () => {
 
     return (
         <div className="admin-dashboard">
-            <header className="dashboard-header">
-                <div className="header-left">
-                    <PersonIcon className="admin-icon" />
-                    <div className="admin-info">
-                        <span className="admin-welcome">Welcome,</span>
-                        <h2 className="admin-name"> {adminData ? (
-                                adminData.name || 'No username set'
-                            ) : (
-                                'Loading...'
-                            )}</h2>
-                            {console.log("adminData", adminData)}
-                    </div>
-                </div>
-                <button className="logout-btn" onClick={handleLogout}>
-                    <LogoutIcon />
-                    <span>Logout</span>
-                </button>
-            </header>
+            <AdminHeader />
 
             <div className="dashboard-content">
                 <div className="dashboard-stats">
@@ -236,10 +259,10 @@ const AdminDashboard = () => {
                         <div className="search-bar">
                             <SearchIcon />
                             <input
-                                type="text"
-                                placeholder="Search by Mobile No..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
+                               type="text"
+                               placeholder="Search by name or request no."
+                               value={searchQuery}
+                               onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
                     </div>

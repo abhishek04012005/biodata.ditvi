@@ -512,7 +512,7 @@
     }
 
     .form-navigation {
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
 
     .nav-button {

@@ -8,15 +8,15 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import WorkIcon from '@mui/icons-material/Work';
 import DescriptionIcon from '@mui/icons-material/Description';
-import ArticleIcon from '@mui/icons-material/Article';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
+import BookIcon from '@mui/icons-material/Book';
 
 const navLinks = [
     { id: '', label: 'HOME', icon: <HomeIcon /> },
     { id: 'whyus', label: 'WHY US?', icon: <InfoIcon /> },
     { id: 'how-we-work', label: 'HOW WE WORK', icon: <WorkIcon /> },
     { id: 'biodata', label: 'BIODATA', icon: <DescriptionIcon /> },
-    { id: 'blog', label: 'BLOG', icon: <ArticleIcon /> },
+    { id: 'blog', label: 'BLOG', icon: <BookIcon /> },
     { id: 'contact', label: 'CONTACT', icon: <ContactMailIcon /> }
 ];
 

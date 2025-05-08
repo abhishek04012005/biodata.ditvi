@@ -59,7 +59,7 @@ const Form = () => {
         setCurrentStep(prev => Math.max(prev - 1, 0));
     };
 
-    const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB in bytes
+    const MAX_IMAGE_SIZE = 1 * 1024 * 1024; // 1MB in bytes
 
 
 
@@ -68,7 +68,7 @@ const Form = () => {
         if (file) {
             // Validate file size
             if (file.size > MAX_IMAGE_SIZE) {
-                alert('Image size should be less than 5MB');
+                alert('Image size should be less than or equal to 1MB');
                 return;
             }
 
@@ -109,8 +109,8 @@ const Form = () => {
             setFormData(prev => ({
                 ...prev,
                 educationData: [
+                    { degree: '', institution: '', year: '', score: '' },
                     ...prev.educationData,
-                    { degree: '', institution: '', year: '', score: '' }
                 ]
             }));
         }
@@ -129,17 +129,29 @@ const Form = () => {
 
 
     const handleAddSibling = (type) => {
-        const familyIndex = type === 'brother' ? 2 : 3;
+        const brotherIndex = 2;
+        const sisterIndex = 3;
         const newFamilyData = [...formData.familyData];
-        const currentSibling = newFamilyData[familyIndex];
 
-        if (currentSibling.name.length < 2) {
-            currentSibling.name.push('');
-            currentSibling.married.push('No');
-            currentSibling.occupation.push('');
+        // Calculate total siblings
+        const totalSiblings = newFamilyData[brotherIndex].name.length +
+            newFamilyData[sisterIndex].name.length;
+
+        // Check if total siblings is less than 6
+        if (totalSiblings < 6) {
+            const familyIndex = type === 'brother' ? brotherIndex : sisterIndex;
+            const currentSibling = newFamilyData[familyIndex];
+
+            // Add new sibling at the beginning of arrays
+            currentSibling.name.unshift('');
+            currentSibling.married.unshift('No');
+            currentSibling.occupation.unshift('');
             setFormData({ ...formData, familyData: newFamilyData });
+        } else {
+            alert('Maximum 6 siblings (brothers and sisters combined) are allowed');
         }
     };
+
 
     const handleRemoveSibling = (type, siblingIndex) => {
         const familyIndex = type === 'brother' ? 2 : 3;
@@ -151,53 +163,53 @@ const Form = () => {
         setFormData({ ...formData, familyData: newFamilyData });
     };
 
- const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    if (currentStep !== steps.length - 1) {
-        handleNext();
-        return;
-    }
-
-    // Validate contact data
-    if (!formData.contactData?.address || !formData.contactData?.mobile) {
-        alert('Please fill in all contact information');
-        return;
-    }
-
-    setIsLoading(true);
-    try {
-        let imageUrl = null;
-        if (selectedImage) {
-            imageUrl = await uploadImage(selectedImage);
+        if (currentStep !== steps.length - 1) {
+            handleNext();
+            return;
         }
 
-        const dataToSave = {
-            ...formData,
-            profileImage: imageUrl
-        };
+        // Validate contact data
+        if (!formData.contactData?.address || !formData.contactData?.mobile) {
+            alert('Please fill in all contact information');
+            return;
+        }
 
-        const savedData = await BiodataStorage.saveBiodata(dataToSave);
-
-        // Navigate to thank you page with order details
-        navigate('/thank-you', {
-            state: {
-                requestDetails: {
-                    requestNumber: requestNumber, // Or however you generate order IDs
-                    modelType: modelType,
-                    language: language,
-                    name: guestName,
-                    mobileNumber: mobileNumber
-                }
+        setIsLoading(true);
+        try {
+            let imageUrl = null;
+            if (selectedImage) {
+                imageUrl = await uploadImage(selectedImage);
             }
-        });
-    } catch (error) {
-        console.error('Error saving biodata:', error);
-        alert('Failed to save biodata');
-    } finally {
-        setIsLoading(false);
-    }
-};
+
+            const dataToSave = {
+                ...formData,
+                profileImage: imageUrl
+            };
+
+            const savedData = await BiodataStorage.saveBiodata(dataToSave);
+
+            // Navigate to thank you page with order details
+            navigate('/thank-you', {
+                state: {
+                    requestDetails: {
+                        requestNumber: requestNumber, // Or however you generate order IDs
+                        modelType: modelType,
+                        language: language,
+                        name: guestName,
+                        mobileNumber: mobileNumber
+                    }
+                }
+            });
+        } catch (error) {
+            console.error('Error saving biodata:', error);
+            alert('Failed to save biodata');
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const renderStepContent = () => {
         switch (currentStep) {
@@ -241,7 +253,7 @@ const Form = () => {
                             <div className="image-requirements">
                                 <small>
                                     * Accepted formats: JPG, PNG, JPEG<br />
-                                    * Maximum size: 5MB<br />
+                                    * Maximum size: 1MB<br />
                                     * Recommended dimensions: 400x400px
                                 </small>
                             </div>
@@ -356,7 +368,7 @@ const Form = () => {
                         {formData.educationData.map((education, index) => (
                             <div key={index} className="education-group">
                                 <div className="education-header">
-                                    <h3>Education {index + 1}</h3>
+                                    <h3>Education {formData.educationData.length - index}</h3>
                                     {formData.educationData.length > 1 && (
                                         <button
                                             type="button"
@@ -480,7 +492,7 @@ const Form = () => {
                         <div className="family-group">
                             <div className="sibling-header">
                                 <h3>Brother(s)</h3>
-                                {formData.familyData[2].name.length < 2 && (
+                                {(formData.familyData[2].name.length + formData.familyData[3].name.length) < 6 && (
                                     <button
                                         type="button"
                                         onClick={() => handleAddSibling('brother')}
@@ -564,8 +576,8 @@ const Form = () => {
                         {/* Sisters Section */}
                         <div className="family-group">
                             <div className="sibling-header">
-                                <h3> Sister(s)</h3>
-                                {formData.familyData[3].name.length < 2 && (
+                                <h3>Sister(s)</h3>
+                                {(formData.familyData[2].name.length + formData.familyData[3].name.length) < 6 && (
                                     <button
                                         type="button"
                                         onClick={() => handleAddSibling('sister')}
@@ -878,7 +890,7 @@ const Form = () => {
                 </form>
             </div>
 
-            {isLoading && <Loader/> }
+            {isLoading && <Loader />}
         </>
 
     );

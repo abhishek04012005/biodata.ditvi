@@ -53,7 +53,7 @@ const BlogCard = ({ post }) => {
 const Blog = () => {
     const navigate = useNavigate();
     return (
-        <section className="blog-section">
+        <section className="blog">
             <div className="blog-background">
                 <div className="blog-circle circle-1"></div>
                 <div className="blog-circle circle-2"></div>

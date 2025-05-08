@@ -54,7 +54,7 @@ const Contact = () => {
     };
 
     return (
-        <section className="contact-section">
+        <section className="contact">
             <div className="contact-background">
                 <div className="contact-circle circle-1"></div>
                 <div className="contact-circle circle-2"></div>
@@ -135,7 +135,7 @@ const Contact = () => {
                                         value={formData.message}
                                         onChange={handleChange}
                                         multiline
-                                        rows={6}
+                                        rows={0}
                                         fullWidth
                                         required
                                     />

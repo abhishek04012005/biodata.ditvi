@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../../config/supabase';
-import { 
-    Search, 
-    Sort, 
-    Visibility, 
-    Storage, 
-    Person, 
+import {
+    Search,
+    Sort,
+    Visibility,
+    Storage,
+    Person,
     CalendarToday,
-    Description 
+    Description
 } from '@mui/icons-material';
 import './ProductionDashboard.css';
 import Loader from '../../Loader/Loader';
@@ -59,12 +59,19 @@ const ProductionDashboard = () => {
         });
     };
 
+
+
+
     const filterAndSortRequests = () => {
         let filtered = [...requests];
 
         if (searchQuery) {
+            const query = searchQuery.toLowerCase();
             filtered = filtered.filter(request =>
-                request.name?.value?.toLowerCase().includes(searchQuery.toLowerCase())
+            // Search by name
+            (request.name?.value?.toLowerCase().includes(query) ||
+                // Search by request number (convert number to string for comparison)
+                request.request_number?.toString().includes(searchQuery))
             );
         }
 
@@ -73,6 +80,17 @@ const ProductionDashboard = () => {
                 return sortConfig.direction === 'asc'
                     ? new Date(a.created_at) - new Date(b.created_at)
                     : new Date(b.created_at) - new Date(a.created_at);
+            } else if (sortConfig.key === 'name') {
+                const nameA = a.name?.value?.toLowerCase() || '';
+                const nameB = b.name?.value?.toLowerCase() || '';
+                return sortConfig.direction === 'asc'
+                    ? nameA.localeCompare(nameB)
+                    : nameB.localeCompare(nameA);
+            } else if (sortConfig.key === 'request_number') {
+                // Add sorting for request number as integer
+                return sortConfig.direction === 'asc'
+                    ? (a.request_number || 0) - (b.request_number || 0)
+                    : (b.request_number || 0) - (a.request_number || 0);
             }
             return 0;
         });
@@ -97,14 +115,14 @@ const ProductionDashboard = () => {
 
     if (loading) {
         return (
-    
-            <Loader/>
+
+            <Loader />
         );
     }
 
     return (
         <div className="production-dashboard">
-            <AdminHeader/>
+            <AdminHeader />
             <div className="dashboard-background">
                 <div className="dashboard-circle circle-1"></div>
                 <div className="dashboard-circle circle-2"></div>
@@ -144,11 +162,15 @@ const ProductionDashboard = () => {
                             <Search className="search-icon" />
                             <input
                                 type="text"
-                                placeholder="Search by name..."
+                                placeholder="Search by name or request no."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
+
+
+
+
                     </div>
 
                     <div className="table-container">
@@ -165,6 +187,7 @@ const ProductionDashboard = () => {
                                             )}
                                         </div>
                                     </th>
+                                    <th>Request No.</th>
                                     <th>
                                         <div onClick={() => handleSort('created_at')} className="sortable-header">
                                             <CalendarToday />
@@ -193,6 +216,7 @@ const ProductionDashboard = () => {
                                             </div>
                                         </td>
                                         <td>{request.name?.value || 'Unnamed'}</td>
+                                        <td>{request.request_number}</td>
                                         <td>{formatDate(request.created_at)}</td>
                                         <td className="action-buttons">
                                             <Link
